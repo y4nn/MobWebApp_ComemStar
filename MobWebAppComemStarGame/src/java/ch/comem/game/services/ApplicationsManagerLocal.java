@@ -11,6 +11,6 @@ import javax.ejb.Local;
  * @author fraud_000
  */
 @Local
-public interface ApplicationManagerLocal {
-    
+public interface ApplicationsManagerLocal {
+    public Long createApplication(String name, String description);
 }
