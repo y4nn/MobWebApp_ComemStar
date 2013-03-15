@@ -4,14 +4,13 @@
  */
 package ch.comem.game.services;
 
-import javax.ejb.Stateless;
+import javax.ejb.Local;
 
 /**
  *
  * @author Service-Info
  */
-@Stateless
-public class PlayerManager implements PlayerManagerLocal {
-
-
+@Local
+public interface PlayersManagerLocal {
+    public Long createPlayer(Long id, String firstName, String lastName, String email, int nbPoints);
 }
