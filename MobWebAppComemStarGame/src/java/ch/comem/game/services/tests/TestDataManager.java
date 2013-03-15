@@ -4,7 +4,10 @@
  */
 package ch.comem.game.services.tests;
 
+import ch.comem.game.model.Player;
 import ch.comem.game.services.ApplicationsManagerLocal;
+import ch.comem.game.services.PlayersManager;
+import ch.comem.game.services.PlayersManagerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -17,13 +20,14 @@ import javax.jws.WebService;
 @WebService
 public class TestDataManager implements TestDataManagerLocal {
 
-    @EJB    
+    @EJB
     private ApplicationsManagerLocal applicationsManager;
-    
-    public void generateTestData(){
-        for(int i=0; i<100; i++){
-           this.applicationsManager.createApplication("Application "+i, "Ceci est une application de test no "+i);
+    private PlayersManagerLocal playerManager;
+
+    public void generateTestData() {
+        for (int i = 0; i < 100; i++) {
+            this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
+            this.playerManager.createPlayer((long) i, "prenom", "nom", "email", i);
         }
     }
-
 }
