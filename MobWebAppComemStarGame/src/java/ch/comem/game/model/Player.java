@@ -20,6 +20,8 @@ public class Player implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nom, prenom, email;
+    private int nbPoints;
 
     public Long getId() {
         return id;
