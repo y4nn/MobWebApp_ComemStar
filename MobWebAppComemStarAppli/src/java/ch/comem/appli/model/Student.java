@@ -15,11 +15,16 @@ import javax.persistence.Id;
  * @author Service-Info
  */
 @Entity
-public class Etudiant implements Serializable {
+public class Student implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String lastName;
+    private String firstName;
+    private String mail;
+    private String pass;
 
     public Long getId() {
         return id;
@@ -27,6 +32,38 @@ public class Etudiant implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     @Override
@@ -39,10 +76,10 @@ public class Etudiant implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Etudiant)) {
+        if (!(object instanceof Student)) {
             return false;
         }
-        Etudiant other = (Etudiant) object;
+        Student other = (Student) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
