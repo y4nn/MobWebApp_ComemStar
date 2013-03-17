@@ -12,5 +12,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface PlayersManagerLocal {
-    public Long createPlayer(Long id, String firstName, String lastName, String email, int nbPoints);
+    public Long createPlayer(String firstName, String lastName, String email);
 }

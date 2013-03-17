@@ -22,12 +22,13 @@ public class TestDataManager implements TestDataManagerLocal {
 
     @EJB
     private ApplicationsManagerLocal applicationsManager;
+    @EJB
     private PlayersManagerLocal playerManager;
 
     public void generateTestData() {
         for (int i = 0; i < 100; i++) {
             this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
-            this.playerManager.createPlayer((long) i, "prenom", "nom", "email", i);
+            this.playerManager.createPlayer("prenom", "nom", "email");
         }
     }
 }

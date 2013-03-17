@@ -23,13 +23,12 @@ public class PlayersManager implements PlayersManagerLocal {
     }
 
     @Override
-    public Long createPlayer(Long id, String firstName, String lastName, String email, int nbPoints) {
-        Player player = new Player();
-        player.setId(id);
+    public Long createPlayer(String firstName, String lastName, String email) {
+        Player player = new Player();;
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmail(email);
-        player.setNbPoints(nbPoints);
+        player.setNbPoints(0);
         em.persist(player);
         em.flush();
         return player.getId();
