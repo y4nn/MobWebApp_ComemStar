@@ -7,6 +7,9 @@
     <service name="TestDataManager">
       <implementation-class>ch.comem.game.services.tests.TestDataManager</implementation-class>
     </service>
+    <service name="ReglesManager">
+      <implementation-class>ch.comem.game.services.ReglesManager</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
