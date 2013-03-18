@@ -37,10 +37,10 @@ public class TestDataManager implements TestDataManagerLocal {
     public void generateTestData() {
         for (int i = 0; i < 100; i++) {
             this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
-            this.playersManager.createPlayer("prenom", "nom", "email");
-            this.eventsManager.createEvent("Type"+i);
-            this.rulesManager.createRules("Type"+i, i);
-            this.badgesManager.createBadge("Badge"+i, "Ceci est le badge no "+i, "icone"+i);
+            this.playersManager.createPlayer("prenom", "nom", "email", null, null);
+            this.eventsManager.createEvent("Type" + i);
+            this.rulesManager.createRules("Type" + i, i);
+            this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
         }
     }
 }
