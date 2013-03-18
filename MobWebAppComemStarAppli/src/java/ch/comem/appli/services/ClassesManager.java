@@ -62,8 +62,8 @@ public class ClassesManager implements ClassesManagerLocal {
                 student.setClasse(null);
             }
             
-            for (Object object : col) {
-                
+            for (Cours cours : classe.getListeCours()) {
+                cours.setListeClasses(null);
             }
             em.remove(classe);
             em.flush();
