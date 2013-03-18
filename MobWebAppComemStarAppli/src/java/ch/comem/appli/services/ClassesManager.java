@@ -5,6 +5,10 @@
 package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
+import ch.comem.appli.model.Cours;
+import ch.comem.appli.model.Student;
+import java.util.LinkedList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,9 +23,12 @@ public class ClassesManager implements ClassesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Classe createClasse(String name) {
+    public Classe createClasse(String name, List<Student> listStudents, List<Cours> listCours) {
         Classe classe = new Classe();
         classe.setName(name);
+        classe.setStudent(listStudents);
+        classe.setListeCours(listCours);
+        
         em.persist(classe); em.flush();
         return classe;
     }

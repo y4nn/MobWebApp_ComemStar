@@ -4,6 +4,7 @@
  */
 package ch.comem.appli.services;
 
+import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Student;
 import javax.ejb.Local;
 
@@ -14,6 +15,6 @@ import javax.ejb.Local;
 @Local
 public interface StudentsManagerLocal {
 
-    Student createStudent(String firstName, String lastName, String mail, String pass);
+    Student createStudent(String firstName, String lastName, String mail, String pass, Classe classe);
     
 }

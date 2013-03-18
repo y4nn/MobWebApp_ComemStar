@@ -4,11 +4,16 @@
  */
 package ch.comem.appli.model;
 
+import com.sun.tools.jxc.gen.config.Classes;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -21,6 +26,11 @@ public class Cours implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToMany(mappedBy="listeCours") private List<Classes> listeClasses;
+    
+    public Cours(){
+        //this.listeClasses = new LinkedList<Classes>();
+    }
 
     public Long getId() {
         return id;
@@ -36,6 +46,14 @@ public class Cours implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Collection<Classes> getListeClasses() {
+        return listeClasses;
+    }
+
+    public void setListeClasses(List<Classes> listeClasses) {
+        this.listeClasses = listeClasses;
     }
 
     @Override

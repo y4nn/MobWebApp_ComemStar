@@ -4,9 +4,9 @@
  */
 package ch.comem.appli.services;
 
+import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Student;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,13 +20,13 @@ public class StudentsManager implements StudentsManagerLocal {
     private EntityManager em;
     
     @Override
-    public Student createStudent(String firstName, String lastName, String mail, String pass) {
+    public Student createStudent(String firstName, String lastName, String mail, String pass, Classe classe) {
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
         student.setMail(mail);
         student.setPass(pass);
-        
+        student.setClasse(classe);
         em.persist(student); em.flush();
         return student;
         

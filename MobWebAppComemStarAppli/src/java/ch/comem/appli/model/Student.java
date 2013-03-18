@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Student implements Serializable {
     private String firstName;
     private String mail;
     private String pass;
+    @ManyToOne private Classe classe;
 
     public Long getId() {
         return id;
@@ -64,6 +66,14 @@ public class Student implements Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+    
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
     @Override
