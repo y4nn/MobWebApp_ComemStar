@@ -28,6 +28,14 @@ public class Rule implements Serializable {
     
     private int nbPts;
     private String eventType;
+    
+    public void setApplication(Application application){
+        this.application = application;
+    }
+    
+    public Application getApplication(){
+        return this.application;
+    }
 
     public int getNbPts() {
         return nbPts;

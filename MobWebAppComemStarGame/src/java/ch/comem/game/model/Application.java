@@ -30,6 +30,16 @@ public class Application implements Serializable {
 
     @OneToMany (mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
+    
+    public List<Rule> getRules(){
+        return this.rules;
+    }
+    
+    public Rule addRule(Rule rule){
+        getRules().add(rule);
+        rule.setApplication(this);
+        return rule;
+    }
 
     public String getName() {
         return name;
