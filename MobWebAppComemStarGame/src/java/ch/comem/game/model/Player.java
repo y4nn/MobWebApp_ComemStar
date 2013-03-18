@@ -11,9 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,6 +29,9 @@ public class Player implements Serializable {
     private int nbPoints;
     @ManyToMany
     private List<Badge> listeBadges = new LinkedList<Badge>();
+    
+    @OneToMany(mappedBy="player") 
+    protected List<Event> listeEvents = new LinkedList<Event>();
     
     public Long getId() {
         return id;
@@ -69,6 +71,22 @@ public class Player implements Serializable {
 
     public void setNbPoints(int nbPoints) {
         this.nbPoints = nbPoints;
+    }
+
+    public List<Badge> getListeBadges() {
+        return listeBadges;
+    }
+
+    public void setListeBadges(List<Badge> listeBadges) {
+        this.listeBadges = listeBadges;
+    }
+
+    public List<Event> getListeEvents() {
+        return listeEvents;
+    }
+
+    public void setListeEvents(List<Event> listeEvents) {
+        this.listeEvents = listeEvents;
     }
 
     @Override

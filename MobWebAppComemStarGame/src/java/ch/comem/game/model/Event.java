@@ -23,9 +23,10 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne 
+    @ManyToOne
     protected Application application;
-    
+    @ManyToOne
+    protected Player player;
     private String type;
 
     public String getType() {
