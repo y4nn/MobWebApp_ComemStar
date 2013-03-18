@@ -5,6 +5,7 @@
 package ch.comem.appli.services;
 
 import ch.comem.appli.model.Answer;
+import ch.comem.appli.model.Question;
 import javax.ejb.Local;
 
 /**
@@ -14,6 +15,6 @@ import javax.ejb.Local;
 @Local
 public interface AnswersManagerLocal {
 
-    Answer createAnswer(String answer, Boolean isValid);
+    Answer createAnswer(String answer, Boolean isValid, Question question);
     
 }

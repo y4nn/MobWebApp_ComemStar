@@ -4,7 +4,10 @@
  */
 package ch.comem.appli.services;
 
+import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Cours;
+import ch.comem.appli.model.Serie;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,6 +17,6 @@ import javax.ejb.Local;
 @Local
 public interface CoursesManagerLocal {
 
-    Cours createCours(String name);
+    Cours createCours(String name, List<Serie> series, List<Classe> classes);
     
 }

@@ -4,7 +4,10 @@
  */
 package ch.comem.appli.services;
 
+import ch.comem.appli.model.Answer;
 import ch.comem.appli.model.Question;
+import ch.comem.appli.model.Serie;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,6 +17,6 @@ import javax.ejb.Local;
 @Local
 public interface QuestionsManagerLocal {
 
-    Question createQuestion(String question);
+    Question createQuestion(String question, List<Answer> answers, Serie serie);
     
 }
