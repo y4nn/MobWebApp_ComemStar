@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Answer implements Serializable {
     private Long id;
     private String answer;
     private Boolean isValid;
+    @ManyToOne private Question question;
 
     public Long getId() {
         return id;
@@ -45,6 +47,14 @@ public class Answer implements Serializable {
 
     public void setIsValid(Boolean isValid) {
         this.isValid = isValid;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     @Override

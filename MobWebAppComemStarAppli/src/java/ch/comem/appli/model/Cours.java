@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Cours implements Serializable {
     private Long id;
     private String name;
     @ManyToMany(mappedBy="listeCours") private List<Classe> listeClasses = new LinkedList<Classe>();
+    @OneToMany(mappedBy="cours") private List<Serie> serie = new LinkedList<Serie>();
+
     
     public Cours(){
         //this.listeClasses = new LinkedList<Classes>();
@@ -54,6 +57,15 @@ public class Cours implements Serializable {
     public void setListeClasses(List<Classe> listeClasses) {
         this.listeClasses = listeClasses;
     }
+    
+    public List<Serie> getSerie() {
+        return serie;
+    }
+
+    public void setSerie(List<Serie> serie) {
+        this.serie = serie;
+    }
+    
 
     @Override
     public int hashCode() {

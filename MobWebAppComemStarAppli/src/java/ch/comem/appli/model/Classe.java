@@ -26,11 +26,11 @@ public class Classe implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy="classe") private List<Student> student;
-    @ManyToMany private List<Cours> listeCours;
+    @OneToMany(mappedBy="classe") private List<Student> student = new LinkedList<Student>();
+    @ManyToMany private List<Cours> listeCours = new LinkedList<Cours>();
     
     public Classe(){
-        this.student = new LinkedList<Student>();
+        //this.student = new LinkedList<Student>();
         //this.listeCours = new LinkedList<Cours>();
     }
 

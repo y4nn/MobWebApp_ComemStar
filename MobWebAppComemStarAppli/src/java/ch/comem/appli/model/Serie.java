@@ -5,10 +5,14 @@
 package ch.comem.appli.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,6 +25,8 @@ public class Serie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne private Cours cours;
+    @OneToMany(mappedBy="serie") private List<Question> question = new LinkedList<Question>();
 
     public Long getId() {
         return id;
@@ -36,6 +42,22 @@ public class Serie implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Cours getCours() {
+        return cours;
+    }
+
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }
+
+    public List<Question> getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(List<Question> question) {
+        this.question = question;
     }
 
     @Override
