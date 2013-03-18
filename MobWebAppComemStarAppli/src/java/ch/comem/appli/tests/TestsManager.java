@@ -39,56 +39,6 @@ public class TestsManager implements TestsManagerLocal {
     @EJB
     private StudentsManagerLocal studentsManager;
     
-    @Override
-    public void generateStudents() {
-        for (int i = 0; i < 100; i++) {
-            this.studentsManager.createStudent("firstName #"+i, "lastName #"+i, i+"@"+i+".ch", "passss"+i, this.classesManager.createClasse("mit39", null, null));
-        }
-    }
     
-    @Override
-    public void generateClasses() {
-        //for (int i = 0; i < 100; i++) {
-            int i=0;
-            List<Student> listeEtudiant = new LinkedList<Student>();
-            listeEtudiant.add(this.studentsManager.createStudent("ziki "+i, "ziki "+i, "ziki "+i, "ziki "+i, null));
-            listeEtudiant.add(this.studentsManager.createStudent("miki "+i, "miki "+i, "miki "+i, "miki "+i, null));
-            List<Cours> listeCours = new LinkedList<Cours>();
-            listeCours.add(this.coursesManager.createCours("IHM"));
-            listeCours.add(this.coursesManager.createCours("Mobile Web Service"));
-            listeCours.add(this.coursesManager.createCours("ITIL"));
-            
-            
-            this.classesManager.createClasse("mit39", listeEtudiant, listeCours);
-        //}
-    }
-    
-    @Override
-    public void generateCourses() {
-        for (int i = 0; i < 100; i++) {
-            this.coursesManager.createCours("cours #"+i);
-        }
-    }
-    
-    @Override
-    public void generateSeries() {
-        for (int i = 0; i < 100; i++) {
-            this.seriesManager.createSerie("serie #"+i);
-        }
-    }
-    
-    @Override
-    public void generateQuestions() {
-        for (int i = 0; i < 100; i++) {
-            this.questionsManager.createQuestion("question #"+i);
-        }
-    }
-    
-    @Override
-    public void generateAnswers() {
-        for (int i = 0; i < 100; i++) {
-            this.answersManager.createAnswer("answer #"+i, true);
-        }
-    }
 
 }
