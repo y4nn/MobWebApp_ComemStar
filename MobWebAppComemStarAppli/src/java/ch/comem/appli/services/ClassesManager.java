@@ -58,6 +58,13 @@ public class ClassesManager implements ClassesManagerLocal {
     public Classe deleteClasse(Long id) {
         Classe classe = this.findClasse(id);
         if(classe != null){
+            for (Student student : classe.getStudent()) {
+                student.setClasse(null);
+            }
+            
+            for (Cours cours : classe.getListeCours()) {
+                cours.setListeClasses(null);
+            }
             em.remove(classe);
             em.flush();
         }
