@@ -16,11 +16,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class Rule implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private int nbPts;
     private String eventType;
 
@@ -72,5 +72,4 @@ public class Rule implements Serializable {
     public String toString() {
         return "ch.comem.game.model.Regle[ id=" + id + " ]";
     }
-    
 }
