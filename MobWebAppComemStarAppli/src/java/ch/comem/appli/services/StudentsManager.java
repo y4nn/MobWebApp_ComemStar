@@ -21,7 +21,7 @@ public class StudentsManager implements StudentsManagerLocal {
     private EntityManager em;
     
     @Override
-    public Long createStudent(String firstName, String lastName, String mail, String pass) {
+    public Student createStudent(String firstName, String lastName, String mail, String pass) {
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
@@ -29,7 +29,7 @@ public class StudentsManager implements StudentsManagerLocal {
         student.setPass(pass);
         
         em.persist(student); em.flush();
-        return student.getId();
+        return student;
         
     }
 

@@ -4,7 +4,7 @@
  */
 package ch.comem.appli.services;
 
-import ch.comem.appli.model.Student;
+import ch.comem.appli.model.Answer;
 import javax.ejb.Local;
 
 /**
@@ -12,8 +12,8 @@ import javax.ejb.Local;
  * @author Ziki
  */
 @Local
-public interface StudentsManagerLocal {
+public interface AnswersManagerLocal {
 
-    Student createStudent(String firstName, String lastName, String mail, String pass);
+    Answer createAnswer(String answer, Boolean isValid);
     
 }
