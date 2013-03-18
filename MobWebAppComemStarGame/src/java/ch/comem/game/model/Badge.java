@@ -16,11 +16,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class Badge implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String name;
     private String description;
     private String icone;
@@ -56,8 +56,6 @@ public class Badge implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -83,5 +81,4 @@ public class Badge implements Serializable {
     public String toString() {
         return "ch.comem.model.Badge[ id=" + id + " ]";
     }
-    
 }

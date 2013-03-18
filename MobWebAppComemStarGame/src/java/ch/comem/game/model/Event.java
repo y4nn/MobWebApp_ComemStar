@@ -16,11 +16,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class Event implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String type;
 
     public String getType() {
@@ -63,5 +63,4 @@ public class Event implements Serializable {
     public String toString() {
         return "ch.comem.game.model.Event[ id=" + id + " ]";
     }
-    
 }
