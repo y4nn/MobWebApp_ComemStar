@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.game.services.REST.service;
+package ch.comem.game.services.REST;
 
-import ch.comem.game.model.Rule;
+import ch.comem.game.model.Badge;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,26 +23,26 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.rule")
-public class RuleFacadeREST extends AbstractFacade<Rule> {
+@Path("ch.comem.game.model.badge")
+public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
 
-    public RuleFacadeREST() {
-        super(Rule.class);
+    public BadgeFacadeREST() {
+        super(Badge.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Rule entity) {
+    public void create(Badge entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(Rule entity) {
+    public void edit(Badge entity) {
         super.edit(entity);
     }
 
@@ -55,21 +55,21 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Rule find(@PathParam("id") Long id) {
+    public Badge find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Rule> findAll() {
+    public List<Badge> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Rule> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Badge> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

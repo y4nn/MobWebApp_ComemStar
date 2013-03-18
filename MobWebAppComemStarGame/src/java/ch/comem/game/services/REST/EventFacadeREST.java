@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.game.services.REST.service;
+package ch.comem.game.services.REST;
 
-import ch.comem.game.model.Badge;
+import ch.comem.game.model.Event;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,26 +23,26 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.badge")
-public class BadgeFacadeREST extends AbstractFacade<Badge> {
+@Path("ch.comem.game.model.event")
+public class EventFacadeREST extends AbstractFacade<Event> {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
 
-    public BadgeFacadeREST() {
-        super(Badge.class);
+    public EventFacadeREST() {
+        super(Event.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Badge entity) {
+    public void create(Event entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(Badge entity) {
+    public void edit(Event entity) {
         super.edit(entity);
     }
 
@@ -55,21 +55,21 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Badge find(@PathParam("id") Long id) {
+    public Event find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Badge> findAll() {
+    public List<Event> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Badge> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Event> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

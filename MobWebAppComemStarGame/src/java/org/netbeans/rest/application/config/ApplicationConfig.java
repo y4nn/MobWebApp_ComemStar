@@ -24,11 +24,11 @@ public class ApplicationConfig extends Application {
      */
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
-        resources.add(ch.comem.game.services.REST.service.PlayerFacadeREST.class);
-        resources.add(ch.comem.game.services.REST.service.EventFacadeREST.class);
-        resources.add(ch.comem.game.services.REST.service.BadgeFacadeREST.class);
-        resources.add(ch.comem.game.services.REST.service.ApplicationFacadeREST.class);
-        resources.add(ch.comem.game.services.REST.service.RuleFacadeREST.class);
+        resources.add(ch.comem.game.services.REST.RuleFacadeREST.class);
+        resources.add(ch.comem.game.services.REST.ApplicationFacadeREST.class);
+        resources.add(ch.comem.game.services.REST.EventFacadeREST.class);
+        resources.add(ch.comem.game.services.REST.PlayerFacadeREST.class);
+        resources.add(ch.comem.game.services.REST.BadgeFacadeREST.class);
         try {
             Class<?> jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
             resources.add(jacksonProvider);

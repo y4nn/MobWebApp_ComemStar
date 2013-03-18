@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.game.services.REST.service;
+package ch.comem.game.services.REST;
 
-import ch.comem.game.model.Event;
+import ch.comem.game.model.Rule;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,26 +23,26 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.event")
-public class EventFacadeREST extends AbstractFacade<Event> {
+@Path("ch.comem.game.model.rule")
+public class RuleFacadeREST extends AbstractFacade<Rule> {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
 
-    public EventFacadeREST() {
-        super(Event.class);
+    public RuleFacadeREST() {
+        super(Rule.class);
     }
 
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Event entity) {
+    public void create(Rule entity) {
         super.create(entity);
     }
 
     @PUT
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void edit(Event entity) {
+    public void edit(Rule entity) {
         super.edit(entity);
     }
 
@@ -55,21 +55,21 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Event find(@PathParam("id") Long id) {
+    public Rule find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
-    public List<Event> findAll() {
+    public List<Rule> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<Event> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Rule> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
