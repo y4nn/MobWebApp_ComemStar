@@ -15,5 +15,10 @@ import javax.ejb.Local;
 public interface BadgesManagerLocal {
 
     public Badge createBadge(String name, String description, String icone);
-    
+
+    public Badge readBadge(Long id);
+
+    public Badge updateBadge(Badge badge);
+
+    public Badge deleteBadge(Badge badge);
 }

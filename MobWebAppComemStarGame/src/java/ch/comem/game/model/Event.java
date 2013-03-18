@@ -5,6 +5,7 @@
 package ch.comem.game.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Event implements Serializable {
     private Long id;
     @ManyToOne
     protected Application application;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Player player;
     private String type;
 
