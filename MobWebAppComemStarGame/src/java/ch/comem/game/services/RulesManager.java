@@ -22,7 +22,7 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Rule createRules(String eventType, int nbPts) {
+    public Rule createRule(String eventType, int nbPts) {
         Rule rule = new Rule();
         rule.setEventType(eventType);
         rule.setNbPts(nbPts);
@@ -31,7 +31,32 @@ public class RulesManager implements RulesManagerLocal {
         return rule;
     }
 
+    public Rule findRule(Long id){
+        return em.find(Rule.class, id);
+    }
 
+    public Rule updateRule(Rule ruleModel){
+        Rule ruleToUpdate = em.find(Rule.class, ruleModel.getId());
+        if(ruleModel.getEventType() != null){
+            ruleToUpdate.setEventType(ruleModel.getEventType());
+        }
+        if(ruleModel.getApplication()!= null){
+            ruleToUpdate.setApplication(ruleModel.getApplication());
+        }
+        if(ruleModel.getApplication()!= null){
+            ruleToUpdate.setApplication(ruleModel.getApplication());
+        }     
+        ruleToUpdate.setNbPts(ruleModel.getNbPts());
+        return ruleToUpdate;
+    }
+
+    public void deleteRule(Rule rule){
+        em.remove(rule);
+    }
+    
+    public void persist(Object object) {
+        em.persist(object);
+    }
     
     
 }

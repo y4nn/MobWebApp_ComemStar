@@ -14,6 +14,6 @@ import javax.ejb.Local;
 @Local
 public interface RulesManagerLocal {
     
-    public Rule createRules(String eventType, int nbPts);
+    public Rule createRule(String eventType, int nbPts);
     
 }

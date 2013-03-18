@@ -4,8 +4,6 @@
  */
 package ch.comem.game.services.tests;
 
-import ch.comem.game.model.Application;
-import ch.comem.game.model.Badge;
 import ch.comem.game.services.ApplicationsManagerLocal;
 import ch.comem.game.services.BadgesManagerLocal;
 import ch.comem.game.services.EventsManagerLocal;
@@ -39,7 +37,7 @@ public class TestDataManager implements TestDataManagerLocal {
             this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
             this.playersManager.createPlayer("prenom", "nom", "email", null, null);
             this.eventsManager.createEvent("Type" + i);
-            this.rulesManager.createRules("Type" + i, i);
+            this.rulesManager.createRule("Type" + i, i);
             this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
         }
     }

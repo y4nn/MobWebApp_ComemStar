@@ -29,6 +29,25 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
        em.flush();
        return application;
    } 
+   
+   public Application findApplication(Long id){
+       return em.find(Application.class, id);
+   }
+   
+   public Application updateApplication(Application applicationModel){
+       Application applicationToUpdate = em.find(Application.class, applicationModel.getId());
+       if(applicationModel.getDescription() != null){
+           applicationToUpdate.setDescription(applicationModel.getDescription());
+       }
+       if(applicationModel.getName() != null){
+           applicationToUpdate.setName(applicationModel.getName());
+       }
+       return applicationToUpdate;
+   }
+   
+   public void deleteApplication(Application application){
+       em.remove(application);
+   }
 
     public void persist(Object object) {
         em.persist(object);
