@@ -4,11 +4,15 @@
  */
 package ch.comem.game.model;
 
+import ch.comem.game.model.Rule;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,6 +24,12 @@ public class Application implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @OneToMany(mappedBy="application") 
+    protected List<Rule> rules = new LinkedList<Rule>();
+
+    @OneToMany (mappedBy="application")
+    protected List<Event> events = new LinkedList<Event>();
 
     public String getName() {
         return name;
