@@ -13,12 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author fraud_000
  */
 @Entity
+@XmlRootElement
 public class Application implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,6 +34,7 @@ public class Application implements Serializable {
     @OneToMany (mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
     
+    @XmlTransient
     public List<Rule> getRules(){
         return this.rules;
     }
