@@ -15,7 +15,6 @@ import javax.persistence.PersistenceContext;
  * @author Ziki
  */
 @Stateless
-@WebService
 public class StudentsManager implements StudentsManagerLocal {
     @PersistenceContext
     private EntityManager em;

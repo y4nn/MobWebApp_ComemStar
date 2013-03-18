@@ -19,11 +19,11 @@
             <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsgen-StudentsManager" depends="wsgen-init">
+    <target name="wsgen-TestsManager" depends="wsgen-init">
         <copy todir="${build.classes.dir}/META-INF">
-            <fileset dir="${webinf.dir}" includes="wsit-ch.comem.appli.services.StudentsManager.xml"/>
+            <fileset dir="${webinf.dir}" includes="wsit-ch.comem.appli.tests.TestsManager.xml"/>
         </copy>
-        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" xendorsed="true" keep="true" genwsdl="true" sei="ch.comem.appli.services.StudentsManager">
+        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" xendorsed="true" keep="true" genwsdl="true" sei="ch.comem.appli.tests.TestsManager">
             <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
         </wsgen>
     </target>
