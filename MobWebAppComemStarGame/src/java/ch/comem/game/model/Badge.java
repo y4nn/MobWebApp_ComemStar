@@ -5,10 +5,13 @@
 package ch.comem.game.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -24,6 +27,8 @@ public class Badge implements Serializable {
     private String name;
     private String description;
     private String icone;
+    @ManyToMany(mappedBy = "listeBadges")
+    private List<Player> listePlayers = new LinkedList<Player>();
 
     public String getIcone() {
         return icone;
