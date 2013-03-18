@@ -62,6 +62,14 @@ public class Badge implements Serializable {
         this.description = description;
     }
 
+    public List<Player> getListePlayers() {
+        return listePlayers;
+    }
+
+    public void setListePlayers(List<Player> listePlayers) {
+        this.listePlayers = listePlayers;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

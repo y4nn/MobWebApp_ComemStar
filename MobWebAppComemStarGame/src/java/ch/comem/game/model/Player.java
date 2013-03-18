@@ -29,10 +29,9 @@ public class Player implements Serializable {
     private int nbPoints;
     @ManyToMany
     private List<Badge> listeBadges = new LinkedList<Badge>();
-    
-    @OneToMany(mappedBy="player") 
+    @OneToMany(mappedBy = "player")
     protected List<Event> listeEvents = new LinkedList<Event>();
-    
+
     public Long getId() {
         return id;
     }
