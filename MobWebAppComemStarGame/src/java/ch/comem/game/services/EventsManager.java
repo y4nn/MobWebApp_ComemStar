@@ -4,34 +4,31 @@
  */
 package ch.comem.game.services;
 
-import ch.comem.game.model.Player;
+import ch.comem.game.model.Event;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Service-Info
+ * @author fraud_000
  */
 @Stateless
-public class PlayersManager implements PlayersManagerLocal {
+@WebService
+public class EventsManager implements EventsManagerLocal {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
-
-    @Override
-    public Long createPlayer(String firstName, String lastName, String email) {
-        Player player = new Player();
-        player.setFirstName(firstName);
-        player.setLastName(lastName);
-        player.setEmail(email);
-        player.setNbPoints(0);
-        em.persist(player);
-        em.flush();
-        return player.getId();
-    }
     
+    public Long createEvent(String type) {
+        Event event = new Event();
+        event.setType(type);
+        em.persist(event);
+        em.flush();
+        return event.getId();
+    }
+
     public void persist(Object object) {
         em.persist(object);
     }
-    
 }
