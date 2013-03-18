@@ -18,5 +18,11 @@ import javax.ejb.Local;
 public interface CoursesManagerLocal {
 
     Cours createCours(String name, List<Serie> series, List<Classe> classes);
+
+    Cours findCourse(Long id);
+
+    Cours updateCours(Cours coursToEdit);
+
+    Cours deleteCours(Long id);
     
 }

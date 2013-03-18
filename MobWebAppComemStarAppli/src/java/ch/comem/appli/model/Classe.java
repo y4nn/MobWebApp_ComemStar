@@ -58,7 +58,7 @@ public class Classe implements Serializable {
         this.student = student;
     }
 
-    public Collection<Cours> getListeCours() {
+    public List<Cours> getListeCours() {
         return listeCours;
     }
 

@@ -50,7 +50,7 @@ public class Cours implements Serializable {
         this.name = name;
     }
 
-    public Collection<Classe> getListeClasses() {
+    public List<Classe> getListeClasses() {
         return listeClasses;
     }
 

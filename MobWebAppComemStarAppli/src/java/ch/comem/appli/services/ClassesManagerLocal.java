@@ -19,5 +19,11 @@ import javax.ejb.Local;
 public interface ClassesManagerLocal {
 
     Classe createClasse(String name, List<Student> listStudents, List<Cours> listCours);
+
+    Classe findClasse(Long id);
+
+    Classe updateClasse(Classe classeToEdit);
+
+    Classe deleteClasse(Long id);
     
 }

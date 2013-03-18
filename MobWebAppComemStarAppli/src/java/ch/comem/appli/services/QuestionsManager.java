@@ -32,6 +32,35 @@ public class QuestionsManager implements QuestionsManagerLocal {
         return q;
     }
 
+    @Override
+    public Question findQuestion(Long id) {
+        return em.find(Question.class, id);
+    }
+
+    @Override
+    public Question updateQuestion(Question questionToEdit) {
+        Question question = this.findQuestion(questionToEdit.getId());
+        if(question != null){
+            if(questionToEdit.getQuestion() != null)
+                question.setQuestion(questionToEdit.getQuestion());
+            if(!questionToEdit.getReponse().isEmpty())
+                question.setReponse(questionToEdit.getReponse());
+            if(questionToEdit.getSerie() != null)
+                question.setSerie(questionToEdit.getSerie());
+        }
+        return question;
+    }
+
+    @Override
+    public Question deleteQuestion(Long id) {
+        Question question = this.findQuestion(id);
+        if(question != null){
+            em.remove(question);
+        }
+        return question;
+    }
+
+    
     
 
 }

@@ -38,17 +38,24 @@ public class StudentsManager implements StudentsManagerLocal {
     }
 
     @Override
-    public Student updateStudent(Long id, String firstName, String lastName, String mail, String pass, Classe classe) {
-        Student studentToEdit = this.findStudent(id);
+    public Student updateStudent(Student studentToEdit) {
+        Student student = this.findStudent(studentToEdit.getId());
         
-        if(studentToEdit != null){
-            studentToEdit.setFirstName(firstName);
-            studentToEdit.setLastName(lastName);
-            studentToEdit.setMail(mail);
-            studentToEdit.setPass(pass);
-            em.persist(studentToEdit); em.flush();
+        if(student != null){
+            if(studentToEdit.getFirstName() != null)
+                student.setFirstName(studentToEdit.getFirstName());
+            if(studentToEdit.getLastName() != null)
+                student.setLastName(studentToEdit.getLastName());
+            if(studentToEdit.getMail() != null)
+                student.setMail(studentToEdit.getMail());
+            if(studentToEdit.getPass() != null)
+                student.setPass(studentToEdit.getPass());
+            if(studentToEdit.getClasse() != null)
+                student.setClasse(studentToEdit.getClasse());
+            
+            em.persist(student); em.flush();
         }
-        return studentToEdit;
+        return student;
     }
 
     @Override

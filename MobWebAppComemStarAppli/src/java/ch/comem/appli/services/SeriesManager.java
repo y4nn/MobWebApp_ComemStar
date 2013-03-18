@@ -32,6 +32,39 @@ public class SeriesManager implements SeriesManagerLocal {
         return serie;
     }
 
+    @Override
+    public Serie findSerie(Long id) {
+        return em.find(Serie.class, id);
+    }
+
+    @Override
+    public Serie updateSerie(Serie serieToEdit) {
+        Serie serie = this.findSerie(serieToEdit.getId());
+        if(serie != null){
+            if(serieToEdit.getName() != null)
+                serie.setName(serieToEdit.getName());
+            if(serieToEdit.getCours() != null)
+                serie.setCours(serieToEdit.getCours());
+            if(!serie.getQuestion().isEmpty())
+                serie.setQuestion(serieToEdit.getQuestion());
+        }
+        return serie;
+    }
+
+    @Override
+    public Serie deleteSerie(Long id) {
+        Serie serie = this.findSerie(id);
+        if(serie != null){
+            em.remove(serie);
+            em.flush();
+        }
+        return serie;
+    }
+    
+    
+    
+    
+
     
 
 }

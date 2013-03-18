@@ -18,5 +18,11 @@ import javax.ejb.Local;
 public interface QuestionsManagerLocal {
 
     Question createQuestion(String question, List<Answer> answers, Serie serie);
+
+    Question findQuestion(Long id);
+
+    Question updateQuestion(Question questionToEdit);
+
+    Question deleteQuestion(Long id);
     
 }

@@ -18,5 +18,11 @@ import javax.ejb.Local;
 public interface SeriesManagerLocal {
 
     Serie createSerie(String name, Cours cours, List<Question> questions);
+
+    Serie findSerie(Long id);
+
+    Serie updateSerie(Serie serieToEdit);
+
+    Serie deleteSerie(Long id);
     
 }

@@ -19,7 +19,7 @@ public interface StudentsManagerLocal {
 
     Student findStudent(Long id);
 
-    Student updateStudent(Long id, String firstName, String lastName, String mail, String pass, Classe classe);
+    Student updateStudent(Student studentToEdit);
 
     Student deleteStudent(Long id);
     

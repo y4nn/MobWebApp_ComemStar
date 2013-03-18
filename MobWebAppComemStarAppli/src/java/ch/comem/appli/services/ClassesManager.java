@@ -33,6 +33,40 @@ public class ClassesManager implements ClassesManagerLocal {
         return classe;
     }
 
+    @Override
+    public Classe findClasse(Long id) {
+        return em.find(Classe.class, id);
+    }
+
+    @Override
+    public Classe updateClasse(Classe classeToEdit) {
+        Classe classe = this.findClasse(classeToEdit.getId());
+        
+        if(classe !=  null){
+            if(classeToEdit.getName() != null)
+                classe.setName(classeToEdit.getName());
+            if(!classeToEdit.getStudent().isEmpty())
+                classe.setStudent(classeToEdit.getStudent());
+            if(!classeToEdit.getListeCours().isEmpty())
+                classe.setListeCours(classeToEdit.getListeCours());
+            em.persist(classe); em.flush();
+        }
+        return classe;
+    }
+
+    @Override
+    public Classe deleteClasse(Long id) {
+        Classe classe = this.findClasse(id);
+        if(classe != null){
+            em.remove(classe);
+            em.flush();
+        }
+        return classe;
+    }
+    
+    
+    
+
     
 
 }

@@ -16,5 +16,11 @@ import javax.ejb.Local;
 public interface AnswersManagerLocal {
 
     Answer createAnswer(String answer, Boolean isValid, Question question);
+
+    Answer findAnswer(Long id);
+
+    Answer updateAnswer(Answer answerToEdit);
+
+    Answer deleteAnswer(Long id);
     
 }
