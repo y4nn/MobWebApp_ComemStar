@@ -21,13 +21,13 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
     private EntityManager em;
 
    @Override
-   public Long createApplication(String name, String description){
+   public Application createApplication(String name, String description){
        Application application = new Application();
        application.setName(name);
        application.setDescription(description);
        em.persist(application);
        em.flush();
-       return application.getId();
+       return application;
    } 
 
     public void persist(Object object) {

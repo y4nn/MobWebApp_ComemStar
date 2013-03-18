@@ -21,14 +21,14 @@ public class Rule implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nbPts;
+    private int nbPts;
     private String eventType;
 
-    public String getNbPts() {
+    public int getNbPts() {
         return nbPts;
     }
 
-    public void setNbPts(String nbPts) {
+    public void setNbPts(int nbPts) {
         this.nbPts = nbPts;
     }
 

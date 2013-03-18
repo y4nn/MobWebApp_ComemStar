@@ -19,7 +19,7 @@ public class PlayersManager implements PlayersManagerLocal {
     private EntityManager em;
 
     @Override
-    public Long createPlayer(String firstName, String lastName, String email) {
+    public Player createPlayer(String firstName, String lastName, String email) {
         Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
@@ -27,7 +27,7 @@ public class PlayersManager implements PlayersManagerLocal {
         player.setNbPoints(0);
         em.persist(player);
         em.flush();
-        return player.getId();
+        return player;
     }
     
     public void persist(Object object) {

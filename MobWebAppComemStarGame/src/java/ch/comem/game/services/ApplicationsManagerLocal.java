@@ -4,6 +4,7 @@
  */
 package ch.comem.game.services;
 
+import ch.comem.game.model.Application;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +13,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface ApplicationsManagerLocal {
-    public Long createApplication(String name, String description);
+    public Application createApplication(String name, String description);
 }

@@ -23,6 +23,15 @@ public class Badge implements Serializable {
     
     private String name;
     private String description;
+    private String icone;
+
+    public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
+    }
 
     public Long getId() {
         return id;

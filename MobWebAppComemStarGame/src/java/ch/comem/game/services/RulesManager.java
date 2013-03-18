@@ -22,7 +22,7 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Rule createRules(String eventType, String nbPts) {
+    public Rule createRules(String eventType, int nbPts) {
         Rule rule = new Rule();
         rule.setEventType(eventType);
         rule.setNbPts(nbPts);

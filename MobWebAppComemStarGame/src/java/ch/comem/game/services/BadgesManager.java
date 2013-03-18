@@ -22,12 +22,12 @@ public class BadgesManager implements BadgesManagerLocal {
     }
     
     @Override
-    public Long createBadge(String name, String description){
+    public Badge createBadge(String name, String description, String icone){
         Badge badge = new Badge();
         badge.setName(name);
         badge.setDescription(description);
         em.persist(badge); em.flush();
-        return badge.getId();
+        return badge;
     }
 
 

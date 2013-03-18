@@ -4,6 +4,7 @@
  */
 package ch.comem.game.services;
 
+import ch.comem.game.model.Player;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +13,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface PlayersManagerLocal {
-    public Long createPlayer(String firstName, String lastName, String email);
+    public Player createPlayer(String firstName, String lastName, String email);
 }

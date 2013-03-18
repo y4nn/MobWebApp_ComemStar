@@ -20,12 +20,12 @@ public class EventsManager implements EventsManagerLocal {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
     
-    public Long createEvent(String type) {
+    public Event createEvent(String type) {
         Event event = new Event();
         event.setType(type);
         em.persist(event);
         em.flush();
-        return event.getId();
+        return event;
     }
 
     public void persist(Object object) {

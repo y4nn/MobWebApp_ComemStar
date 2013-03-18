@@ -4,6 +4,7 @@
  */
 package ch.comem.game.services;
 
+import ch.comem.game.model.Event;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +13,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface EventsManagerLocal {
-    public Long createEvent(String type);
+    public Event createEvent(String type);
 }
