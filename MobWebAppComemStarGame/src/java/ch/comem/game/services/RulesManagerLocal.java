@@ -4,14 +4,16 @@
  */
 package ch.comem.game.services;
 
-import ch.comem.game.model.Application;
+import ch.comem.game.model.Rule;
 import javax.ejb.Local;
 
 /**
  *
- * @author fraud_000
+ * @author admin
  */
 @Local
-public interface ApplicationsManagerLocal {
-    public Application createApplication(String name, String description);
+public interface RulesManagerLocal {
+    
+    public Rule createRules(String eventType, int nbPts);
+    
 }

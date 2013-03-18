@@ -5,10 +5,14 @@
 package ch.comem.game.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,11 +23,16 @@ public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lastName, firstName, email;
     private int nbPoints;
-
+    @ManyToMany
+    private List<Badge> listeBadges = new LinkedList<Badge>();
+    
+    @OneToMany(mappedBy="player") 
+    protected List<Event> listeEvents = new LinkedList<Event>();
+    
     public Long getId() {
         return id;
     }
@@ -62,6 +71,22 @@ public class Player implements Serializable {
 
     public void setNbPoints(int nbPoints) {
         this.nbPoints = nbPoints;
+    }
+
+    public List<Badge> getListeBadges() {
+        return listeBadges;
+    }
+
+    public void setListeBadges(List<Badge> listeBadges) {
+        this.listeBadges = listeBadges;
+    }
+
+    public List<Event> getListeEvents() {
+        return listeEvents;
+    }
+
+    public void setListeEvents(List<Event> listeEvents) {
+        this.listeEvents = listeEvents;
     }
 
     @Override

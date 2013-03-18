@@ -15,22 +15,23 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PlayersManager implements PlayersManagerLocal {
-
-    @PersistenceContext
+    @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
 
-    public PlayersManager() {
-    }
-
     @Override
-    public Long createPlayer(String firstName, String lastName, String email) {
-        Player player = new Player();;
+    public Player createPlayer(String firstName, String lastName, String email) {
+        Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmail(email);
         player.setNbPoints(0);
         em.persist(player);
         em.flush();
-        return player.getId();
+        return player;
     }
+    
+    public void persist(Object object) {
+        em.persist(object);
+    }
+    
 }

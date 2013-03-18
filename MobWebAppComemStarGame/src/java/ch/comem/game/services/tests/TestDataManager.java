@@ -4,10 +4,13 @@
  */
 package ch.comem.game.services.tests;
 
-import ch.comem.game.model.Player;
+import ch.comem.game.model.Application;
+import ch.comem.game.model.Badge;
 import ch.comem.game.services.ApplicationsManagerLocal;
-import ch.comem.game.services.PlayersManager;
+import ch.comem.game.services.BadgesManagerLocal;
+import ch.comem.game.services.EventsManagerLocal;
 import ch.comem.game.services.PlayersManagerLocal;
+import ch.comem.game.services.RulesManagerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -23,12 +26,21 @@ public class TestDataManager implements TestDataManagerLocal {
     @EJB
     private ApplicationsManagerLocal applicationsManager;
     @EJB
-    private PlayersManagerLocal playerManager;
+    private PlayersManagerLocal playersManager;
+    @EJB
+    private EventsManagerLocal eventsManager;
+    @EJB
+    private RulesManagerLocal rulesManager;
+    @EJB
+    private BadgesManagerLocal badgesManager;
 
     public void generateTestData() {
         for (int i = 0; i < 100; i++) {
             this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
-            this.playerManager.createPlayer("prenom", "nom", "email");
+            this.playersManager.createPlayer("prenom", "nom", "email");
+            this.eventsManager.createEvent("Type"+i);
+            this.rulesManager.createRules("Type"+i, i);
+            this.badgesManager.createBadge("Badge"+i, "Ceci est le badge no "+i, "icone"+i);
         }
     }
 }

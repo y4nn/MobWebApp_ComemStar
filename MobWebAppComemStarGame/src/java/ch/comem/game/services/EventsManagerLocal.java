@@ -4,7 +4,7 @@
  */
 package ch.comem.game.services;
 
-import ch.comem.game.model.Application;
+import ch.comem.game.model.Event;
 import javax.ejb.Local;
 
 /**
@@ -12,6 +12,6 @@ import javax.ejb.Local;
  * @author fraud_000
  */
 @Local
-public interface ApplicationsManagerLocal {
-    public Application createApplication(String name, String description);
+public interface EventsManagerLocal {
+    public Event createEvent(String type);
 }

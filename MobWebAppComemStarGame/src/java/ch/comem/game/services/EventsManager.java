@@ -4,7 +4,7 @@
  */
 package ch.comem.game.services;
 
-import ch.comem.game.model.Application;
+import ch.comem.game.model.Event;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -16,22 +16,19 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 @WebService
-public class ApplicationsManager implements ApplicationsManagerLocal {
+public class EventsManager implements EventsManagerLocal {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
-
-   @Override
-   public Application createApplication(String name, String description){
-       Application application = new Application();
-       application.setName(name);
-       application.setDescription(description);
-       em.persist(application);
-       em.flush();
-       return application;
-   } 
+    
+    public Event createEvent(String type) {
+        Event event = new Event();
+        event.setType(type);
+        em.persist(event);
+        em.flush();
+        return event;
+    }
 
     public void persist(Object object) {
         em.persist(object);
     }
-
 }

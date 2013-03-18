@@ -5,10 +5,13 @@
 package ch.comem.game.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -16,13 +19,24 @@ import javax.persistence.Id;
  */
 @Entity
 public class Badge implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String name;
     private String description;
+    private String icone;
+    @ManyToMany(mappedBy = "listeBadges")
+    private List<Player> listePlayers = new LinkedList<Player>();
+
+    public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
+    }
 
     public Long getId() {
         return id;
@@ -47,8 +61,6 @@ public class Badge implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -74,5 +86,4 @@ public class Badge implements Serializable {
     public String toString() {
         return "ch.comem.model.Badge[ id=" + id + " ]";
     }
-    
 }

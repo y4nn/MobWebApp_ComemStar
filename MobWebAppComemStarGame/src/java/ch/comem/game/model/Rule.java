@@ -4,63 +4,57 @@
  */
 package ch.comem.game.model;
 
-import ch.comem.game.model.Rule;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
- * @author fraud_000
+ * @author Sandra
  */
 @Entity
-public class Application implements Serializable {
+public class Rule implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToMany(mappedBy="application") 
-    protected List<Rule> rules = new LinkedList<Rule>();
-
-    @OneToMany (mappedBy="application")
-    protected List<Event> events = new LinkedList<Event>();
+    @ManyToOne 
+    protected Application application;
     
-    public List<Rule> getRules(){
-        return this.rules;
+    private int nbPts;
+    private String eventType;
+    
+    public void setApplication(Application application){
+        this.application = application;
     }
     
-    public Rule addRule(Rule rule){
-        getRules().add(rule);
-        rule.setApplication(this);
-        return rule;
+    public Application getApplication(){
+        return this.application;
     }
 
-    public String getName() {
-        return name;
+    public int getNbPts() {
+        return nbPts;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNbPts(int nbPts) {
+        this.nbPts = nbPts;
     }
-    private String name;
-    private String description;
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setId(Long id) {
@@ -77,10 +71,10 @@ public class Application implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Application)) {
+        if (!(object instanceof Rule)) {
             return false;
         }
-        Application other = (Application) object;
+        Rule other = (Rule) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -89,7 +83,6 @@ public class Application implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.comem.game.model.Application[ id=" + id + " ]";
+        return "ch.comem.game.model.Regle[ id=" + id + " ]";
     }
-    
 }
