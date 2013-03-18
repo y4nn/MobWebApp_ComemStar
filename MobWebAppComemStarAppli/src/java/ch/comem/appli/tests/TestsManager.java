@@ -23,7 +23,7 @@ import javax.jws.WebService;
  * @author Ziki
  */
 @Stateless
-@WebService
+//@WebService
 public class TestsManager implements TestsManagerLocal {
     
     @EJB
@@ -38,6 +38,7 @@ public class TestsManager implements TestsManagerLocal {
     private AnswersManagerLocal answersManager;
     @EJB
     private StudentsManagerLocal studentsManager;
+
     
     
 

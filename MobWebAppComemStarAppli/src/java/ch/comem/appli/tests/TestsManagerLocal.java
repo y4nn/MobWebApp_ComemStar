@@ -13,11 +13,5 @@ import javax.ejb.Local;
 @Local
 public interface TestsManagerLocal {
     
-    void generateStudents();
-    void generateClasses();
-    void generateCourses();
-    void generateSeries();
-    void generateQuestions();
-    void generateAnswers();
     
 }
