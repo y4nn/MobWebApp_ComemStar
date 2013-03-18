@@ -4,6 +4,7 @@
  */
 package ch.comem.appli.tests;
 
+import ch.comem.appli.model.Cours;
 import ch.comem.appli.model.Student;
 import ch.comem.appli.services.AnswersManagerLocal;
 import ch.comem.appli.services.ClassesManagerLocal;
@@ -47,12 +48,19 @@ public class TestsManager implements TestsManagerLocal {
     
     @Override
     public void generateClasses() {
-        for (int i = 0; i < 100; i++) {
+        //for (int i = 0; i < 100; i++) {
+            int i=0;
             List<Student> listeEtudiant = new LinkedList<Student>();
             listeEtudiant.add(this.studentsManager.createStudent("ziki "+i, "ziki "+i, "ziki "+i, "ziki "+i, null));
             listeEtudiant.add(this.studentsManager.createStudent("miki "+i, "miki "+i, "miki "+i, "miki "+i, null));
-            this.classesManager.createClasse("classe #"+i, listeEtudiant, null);
-        }
+            List<Cours> listeCours = new LinkedList<Cours>();
+            listeCours.add(this.coursesManager.createCours("IHM"));
+            listeCours.add(this.coursesManager.createCours("Mobile Web Service"));
+            listeCours.add(this.coursesManager.createCours("ITIL"));
+            
+            
+            this.classesManager.createClasse("mit39", listeEtudiant, listeCours);
+        //}
     }
     
     @Override

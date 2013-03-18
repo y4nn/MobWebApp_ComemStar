@@ -4,7 +4,6 @@
  */
 package ch.comem.appli.model;
 
-import com.sun.tools.jxc.gen.config.Classes;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -26,7 +25,7 @@ public class Cours implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany(mappedBy="listeCours") private List<Classes> listeClasses;
+    @ManyToMany(mappedBy="listeCours") private List<Classe> listeClasses = new LinkedList<Classe>();
     
     public Cours(){
         //this.listeClasses = new LinkedList<Classes>();
@@ -48,11 +47,11 @@ public class Cours implements Serializable {
         this.name = name;
     }
 
-    public Collection<Classes> getListeClasses() {
+    public Collection<Classe> getListeClasses() {
         return listeClasses;
     }
 
-    public void setListeClasses(List<Classes> listeClasses) {
+    public void setListeClasses(List<Classe> listeClasses) {
         this.listeClasses = listeClasses;
     }
 
