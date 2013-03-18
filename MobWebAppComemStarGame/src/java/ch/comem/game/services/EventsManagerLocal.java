@@ -13,5 +13,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface EventsManagerLocal {
+
     public Event createEvent(String type);
+
+    public Event readEvent(Long id);
+
+    public Event updateEvent(Event event);
+
+    public Event deleteEvent(Event event);
 }

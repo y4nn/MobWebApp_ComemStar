@@ -81,7 +81,6 @@ public class PlayersManager implements PlayersManagerLocal {
             return playerToDelete;
         }
         return null;
-
     }
 
     public void persist(Object object) {

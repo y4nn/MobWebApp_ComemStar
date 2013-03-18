@@ -69,6 +69,11 @@ public class BadgesManager implements BadgesManagerLocal {
 
     @Override
     public Badge deleteBadge(Badge badge) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (badge.getId() != null) {
+            Badge badgeToDelete = this.readBadge(badge.getId());
+            this.em.remove(badgeToDelete);
+            return badgeToDelete;
+        }
+        return null;
     }
 }
