@@ -16,5 +16,11 @@ import javax.ejb.Local;
 public interface StudentsManagerLocal {
 
     Student createStudent(String firstName, String lastName, String mail, String pass, Classe classe);
+
+    Student findStudent(Long id);
+
+    Student updateStudent(Long id, String firstName, String lastName, String mail, String pass, Classe classe);
+
+    Student deleteStudent(Long id);
     
 }
