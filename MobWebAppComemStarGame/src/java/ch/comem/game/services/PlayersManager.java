@@ -83,6 +83,22 @@ public class PlayersManager implements PlayersManagerLocal {
         return null;
     }
 
+    @Override
+    public void associateBadge(Long id_player, Long id_badge) {
+        Player player = em.find(Player.class, id_player);
+        Badge badge = em.find(Badge.class, id_badge);
+        player.getListeBadges().add(badge);
+        badge.getListePlayers().add(player);
+    }
+    
+    @Override
+    public void associateEvent(Long id_player, Long id_event) {
+        Player player = em.find(Player.class, id_player);
+        Event event = em.find(Event.class, id_event);
+        player.getListeEvents().add(event);
+        event.setPlayer(player);
+    }
+
     public void persist(Object object) {
         em.persist(object);
     }
