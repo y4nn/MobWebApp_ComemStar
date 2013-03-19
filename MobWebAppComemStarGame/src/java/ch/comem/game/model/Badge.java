@@ -32,7 +32,7 @@ public class Badge implements Serializable {
     private String name;
     private String description;
     private String icone;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "listeBadges")
+    @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "listeBadges")
     private List<Player> listePlayers = new LinkedList<Player>();
 
     public String getIcone() {

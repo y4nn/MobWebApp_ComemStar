@@ -32,9 +32,9 @@ public class Player implements Serializable {
     private Long id;
     private String lastName, firstName, email;
     private int nbPoints;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private List<Badge> listeBadges = new LinkedList<Badge>();
-    @OneToMany(mappedBy = "player",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.REMOVE)
     protected List<Event> listeEvents = new LinkedList<Event>();
 
     public Long getId() {
@@ -77,7 +77,6 @@ public class Player implements Serializable {
         this.nbPoints = nbPoints;
     }
 
-    @XmlTransient
     public List<Badge> getListeBadges() {
         return listeBadges;
     }
@@ -90,7 +89,7 @@ public class Player implements Serializable {
     public List<Event> getListeEvents() {
         return listeEvents;
     }
-
+    
     public void setListeEvents(List<Event> listeEvents) {
         this.listeEvents = listeEvents;
     }

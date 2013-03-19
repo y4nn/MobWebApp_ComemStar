@@ -5,6 +5,7 @@
 package ch.comem.game.services;
 
 import ch.comem.game.model.Badge;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -76,4 +77,5 @@ public class BadgesManager implements BadgesManagerLocal {
         }
         return null;
     }
+
 }
