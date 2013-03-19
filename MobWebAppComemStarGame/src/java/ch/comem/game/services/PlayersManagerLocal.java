@@ -24,4 +24,8 @@ public interface PlayersManagerLocal {
     public Player updatePlayer(Player player);
 
     public Player deletePlayer(Player player);
+
+    public void associateBadge(Long id_player, Long id_badge);
+
+    public void associateEvent(Long id_player, Long id_event);
 }

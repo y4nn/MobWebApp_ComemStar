@@ -6,6 +6,7 @@ package ch.comem.game.services;
 
 import ch.comem.game.model.Application;
 import ch.comem.game.model.Event;
+import ch.comem.game.model.Player;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
@@ -23,10 +24,11 @@ public class EventsManager implements EventsManagerLocal {
     private EntityManager em;
 
     @Override
-    public Event createEvent(String type, Application application) {
+    public Event createEvent(String type, Application application, Player player) {
         Event event = new Event();
         event.setType(type);
         event.setApplication(application);
+        event.setPlayer(player);
         application.addEvent(event);
         em.persist(event);
         em.flush();
