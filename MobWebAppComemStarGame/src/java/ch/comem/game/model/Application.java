@@ -7,6 +7,7 @@ package ch.comem.game.model;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,10 +29,10 @@ public class Application implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="application") 
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy="application") 
     protected List<Rule> rules = new LinkedList<Rule>();
 
-    @OneToMany (fetch=FetchType.LAZY, mappedBy="application")
+    @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
     
     @XmlTransient
