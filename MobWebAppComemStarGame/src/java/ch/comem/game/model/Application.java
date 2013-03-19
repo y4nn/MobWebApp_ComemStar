@@ -4,7 +4,6 @@
  */
 package ch.comem.game.model;
 
-import ch.comem.game.model.Rule;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,8 +40,16 @@ public class Application implements Serializable {
     
     public Rule addRule(Rule rule){
         getRules().add(rule);
-        rule.setApplication(this);
         return rule;
+    }
+
+    public List<Event> getEvents() {
+        return this.events;
+    }
+
+    public Event addEvent(Event event) {
+        this.getEvents().add(event);
+        return event;
     }
 
     public String getName() {

@@ -4,6 +4,7 @@
  */
 package ch.comem.game.services;
 
+import ch.comem.game.model.Application;
 import ch.comem.game.model.Rule;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -22,10 +23,12 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Rule createRule(String eventType, int nbPts) {
+    public Rule createRule(String eventType, int nbPts, Application application) {
         Rule rule = new Rule();
         rule.setEventType(eventType);
         rule.setNbPts(nbPts);
+        rule.setApplication(application);
+        application.addRule(rule);
         em.persist(rule);
         em.flush();
         return rule;

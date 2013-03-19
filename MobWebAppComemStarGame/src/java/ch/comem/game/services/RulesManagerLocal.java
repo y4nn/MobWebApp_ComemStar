@@ -4,6 +4,7 @@
  */
 package ch.comem.game.services;
 
+import ch.comem.game.model.Application;
 import ch.comem.game.model.Rule;
 import javax.ejb.Local;
 
@@ -14,6 +15,5 @@ import javax.ejb.Local;
 @Local
 public interface RulesManagerLocal {
     
-    public Rule createRule(String eventType, int nbPts);
-    
+    public Rule createRule(String eventType, int nbPts, Application application);
 }
