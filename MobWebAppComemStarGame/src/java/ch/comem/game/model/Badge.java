@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Badge implements Serializable {
     private String name;
     private String description;
     private String icone;
-    @ManyToMany(mappedBy = "listeBadges",cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "listeBadges")
     private List<Player> listePlayers = new LinkedList<Player>();
 
     public String getIcone() {
