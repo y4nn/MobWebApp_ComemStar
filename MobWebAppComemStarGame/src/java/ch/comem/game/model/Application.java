@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,10 +28,10 @@ public class Application implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToMany(mappedBy="application") 
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="application") 
     protected List<Rule> rules = new LinkedList<Rule>();
 
-    @OneToMany (mappedBy="application")
+    @OneToMany (fetch=FetchType.LAZY, mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
     
     @XmlTransient
