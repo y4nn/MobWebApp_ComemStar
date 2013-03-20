@@ -5,7 +5,9 @@
 package ch.comem.game.services.REST;
 
 import ch.comem.game.model.Application;
+import ch.comem.game.services.ApplicationsManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,63 +26,69 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("ch.comem.game.model.application")
-public class ApplicationFacadeREST extends AbstractFacade<Application> {
+public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
-
+    @EJB
+    ApplicationsManagerLocal applicationManager;
     public ApplicationFacadeREST() {
-        super(Application.class);
+        //super(Application.class);
     }
 
     @POST
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Application entity) {
-        super.create(entity);
+        //super.create(entity);
+        applicationManager.createApplication(entity.getName(), entity.getDescription());
     }
 
     @PUT
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void edit(Application entity) {
-        super.edit(entity);
+        //super.edit(entity);
+        applicationManager.updateApplication(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+        //super.remove(super.find(id));
+        Application appToDelete = applicationManager.findApplication(id);
+        applicationManager.deleteApplication(appToDelete);
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
     public Application find(@PathParam("id") Long id) {
-        return super.find(id);
+        //return super.find(id);
+        return applicationManager.findApplication(id);
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Application> findAll() {
-        return super.findAll();
+        //return super.findAll();
+        return applicationManager.findAllApplications();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
     public List<Application> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+        //return super.findRange(new int[]{from, to});
+        return null;
     }
 
     @GET
     @Path("count")
     @Produces("text/plain")
     public String countREST() {
-        return String.valueOf(super.count());
+        //return String.valueOf(super.count());
+        return null;
     }
 
-    @Override
+
     protected EntityManager getEntityManager() {
         return em;
     }

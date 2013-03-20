@@ -5,9 +5,11 @@
 package ch.comem.game.services;
 
 import ch.comem.game.model.Application;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -30,10 +32,17 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
        return application;
    } 
    
+   @Override
    public Application findApplication(Long id){
        return em.find(Application.class, id);
    }
    
+    @Override
+   public List<Application> findAllApplications(){
+       return em.createNamedQuery("findApplication").getResultList();
+   }
+   
+   @Override
    public Application updateApplication(Application applicationModel){
        Application applicationToUpdate = em.find(Application.class, applicationModel.getId());
        if(applicationModel.getDescription() != null){
