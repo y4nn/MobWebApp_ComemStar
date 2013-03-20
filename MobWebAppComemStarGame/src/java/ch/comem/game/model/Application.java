@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,6 +24,9 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
+@NamedQuery(name="findApplication",
+        query="SELECT a.id, a.name, a.description " +
+              "FROM Application a")
 public class Application implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,7 +39,7 @@ public class Application implements Serializable {
     @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
     
-    @XmlTransient
+
     public List<Rule> getRules(){
         return this.rules;
     }
