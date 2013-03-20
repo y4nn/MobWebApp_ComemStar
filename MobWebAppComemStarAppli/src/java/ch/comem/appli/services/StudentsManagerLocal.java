@@ -6,6 +6,7 @@ package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Student;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -22,5 +23,7 @@ public interface StudentsManagerLocal {
     Student updateStudent(Student studentToEdit);
 
     Student deleteStudent(Long id);
+
+    List<Student> findAll();
     
 }

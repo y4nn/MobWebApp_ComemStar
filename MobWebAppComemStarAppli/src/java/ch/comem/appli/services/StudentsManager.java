@@ -6,9 +6,12 @@ package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Student;
+import java.util.LinkedList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,11 +30,16 @@ public class StudentsManager implements StudentsManagerLocal {
         student.setMail(mail);
         student.setPass(pass);
         
-        //if(classe != null)
+        if(classe != null){
             student.setClasse(classe);
             classe.addStudent(student);
+        }
         
         em.persist(student); em.flush();
+        
+        // Appel rest sur engine
+        // jersey
+        
         return student;
         
     }
@@ -42,6 +50,8 @@ public class StudentsManager implements StudentsManagerLocal {
     public Student findStudent(Long id) {
         return em.find(Student.class, id);
     }
+    
+    
 
     @Override
     public Student updateStudent(Student studentToEdit) {
@@ -72,6 +82,15 @@ public class StudentsManager implements StudentsManagerLocal {
             em.flush();
         }
         return studentToDelete;
+    }
+
+    @Override
+    public List<Student> findAll() {
+        //List<Student> liste = new LinkedList<Student>();
+        TypedQuery<Student> query = em.createNamedQuery("Student.findAll", Student.class);
+        return query.getResultList();
+        
+        //return liste;
     }
     
     

@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,6 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
+@NamedQueries({
+@NamedQuery(name="Student.findAll", query="select object(o) from Student o")//,
+//@NamedQuery(name="Customer.findById",query="select object(cust) from Customer cust where cust.custid = :custid"),
+//@NamedQuery(name="Customer.findByEmail",query="select object(cust) from Customer cust where cust.email = :email and cust.password = :password")
+})
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
