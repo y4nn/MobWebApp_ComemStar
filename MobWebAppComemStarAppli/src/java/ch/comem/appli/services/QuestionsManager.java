@@ -22,15 +22,17 @@ public class QuestionsManager implements QuestionsManagerLocal {
     private EntityManager em;
 
     @Override
-    public Question createQuestion(String question, List<Answer> answers, Serie serie) {
+    public Question createQuestion(String question, Serie serie) {
         Question q = new Question();
         q.setQuestion(question);
-        q.setReponse(answers);
         q.setSerie(serie);
+        serie.addQuestion(q);
         em.persist(q);
         em.flush();
         return q;
     }
+    
+    
 
     @Override
     public Question findQuestion(Long id) {
@@ -55,9 +57,20 @@ public class QuestionsManager implements QuestionsManagerLocal {
     public Question deleteQuestion(Long id) {
         Question question = this.findQuestion(id);
         if(question != null){
+            for (Answer answer : question.getReponse()) {
+                answer.setQuestion(null);
+            }
+            question.getSerie().getQuestion().remove(question);
             em.remove(question);
         }
         return question;
+    }
+
+    @Override
+    public Question addReponse(Question question, Answer answer) {
+        question.addAnswer(answer);
+        answer.setQuestion(question);
+        return null;
     }
 
     

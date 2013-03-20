@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -52,12 +53,17 @@ public class Classe implements Serializable {
         this.name = name;
     }
 
+    @XmlTransient
     public List<Student> getStudent() {
         return student;
     }
 
     public void setStudent(List<Student> student) {
         this.student = student;
+    }
+    
+    public void addStudent(Student student){
+        this.student.add(student);
     }
 
     public List<Cours> getListeCours() {
@@ -66,6 +72,11 @@ public class Classe implements Serializable {
 
     public void setListeCours(List<Cours> listeCours) {
         this.listeCours = listeCours;
+    }
+    
+    public void addCours(Cours cours){
+        this.listeCours.add(cours);
+        //cours.addClasse(this);//
     }
 
     @Override

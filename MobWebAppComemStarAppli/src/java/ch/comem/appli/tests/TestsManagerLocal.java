@@ -12,6 +12,12 @@ import javax.ejb.Local;
  */
 @Local
 public interface TestsManagerLocal {
+
+    void populateDB();
+
+    void createClassesCours();
+
+    void deleteCours(Long idCours);
     
     
 }

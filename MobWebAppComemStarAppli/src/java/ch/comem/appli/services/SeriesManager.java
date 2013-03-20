@@ -22,11 +22,11 @@ public class SeriesManager implements SeriesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Serie createSerie(String name, Cours cours, List<Question> questions) {
+    public Serie createSerie(String name, Cours cours) {
         Serie serie = new Serie();
         serie.setName(name);
         serie.setCours(cours);
-        serie.setQuestion(questions);
+        cours.addSerie(serie);
         em.persist(serie);
         em.flush();
         return serie;
@@ -55,9 +55,20 @@ public class SeriesManager implements SeriesManagerLocal {
     public Serie deleteSerie(Long id) {
         Serie serie = this.findSerie(id);
         if(serie != null){
+            serie.getCours().getSerie().remove(serie);
+            for (Question question : serie.getQuestion()) {
+                question.setSerie(null);
+            }
             em.remove(serie);
             em.flush();
         }
+        return serie;
+    }
+
+    @Override
+    public Serie addQuestion(Serie serie, Question question) {
+        serie.addQuestion(question);
+        question.setSerie(serie);
         return serie;
     }
     

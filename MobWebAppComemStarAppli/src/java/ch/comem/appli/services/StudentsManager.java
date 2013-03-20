@@ -26,11 +26,17 @@ public class StudentsManager implements StudentsManagerLocal {
         student.setLastName(lastName);
         student.setMail(mail);
         student.setPass(pass);
-        student.setClasse(classe);
+        
+        //if(classe != null)
+            student.setClasse(classe);
+            classe.addStudent(student);
+        
         em.persist(student); em.flush();
         return student;
         
     }
+    
+    
 
     @Override
     public Student findStudent(Long id) {
