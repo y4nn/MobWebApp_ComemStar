@@ -2,44 +2,26 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.game.model;
+package ch.comem.game.dto;
 
+import ch.comem.game.model.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author fraud_000
  */
-@Entity
-@XmlRootElement
-@NamedQuery(name="findApplication",
-        query="SELECT a.id, a.name, a.description " +
-              "FROM Application a")
-public class Application implements Serializable {
+
+public class ApplicationDTO implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy="application") 
     protected List<Rule> rules = new LinkedList<Rule>();
-
-    @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy="application")
     protected List<Event> events = new LinkedList<Event>();
     
-
     public List<Rule> getRules(){
         return this.rules;
     }
@@ -94,10 +76,10 @@ public class Application implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Application)) {
+        if (!(object instanceof ApplicationDTO)) {
             return false;
         }
-        Application other = (Application) object;
+        ApplicationDTO other = (ApplicationDTO) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
