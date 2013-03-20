@@ -4,7 +4,6 @@
  */
 package ch.comem.game.dto;
 
-import ch.comem.game.model.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
