@@ -6,26 +6,25 @@ package ch.comem.game.dto;
 
 import ch.comem.game.model.Application;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sandra
  */
-
+@XmlRootElement
 public class RuleDTO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Long id;
-    protected Application application;
+    protected ApplicationDTO application;
     private int nbPts;
     private String eventType;
-    
-    public void setApplication(Application application){
+
+    public void setApplication(ApplicationDTO application) {
         this.application = application;
     }
-    
-    public Application getApplication(){
+
+    public ApplicationDTO getApplication() {
         return this.application;
     }
 

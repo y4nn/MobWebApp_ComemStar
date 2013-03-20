@@ -8,22 +8,20 @@ import ch.comem.game.model.Player;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Ziki
  */
-
+@XmlRootElement
 public class BadgeDTO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
     private String description;
     private String icone;
-
-    private List<Player> listePlayers = new LinkedList<Player>();
+    private List<PlayerDTO> listePlayers = new LinkedList<PlayerDTO>();
 
     public String getIcone() {
         return icone;
@@ -57,12 +55,11 @@ public class BadgeDTO implements Serializable {
         this.description = description;
     }
 
-
-    public List<Player> getListePlayers() {
+    public List<PlayerDTO> getListePlayers() {
         return listePlayers;
     }
-    
-    public void setListePlayers(List<Player> listePlayers) {
+
+    public void setListePlayers(List<PlayerDTO> listePlayers) {
         this.listePlayers = listePlayers;
     }
 
