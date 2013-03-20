@@ -2,37 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.game.model;
+package ch.comem.game.dto;
 
+import ch.comem.game.model.Player;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Ziki
  */
-@Entity
-@XmlRootElement
-public class Badge implements Serializable {
+
+public class BadgeDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private String description;
     private String icone;
-    @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "listeBadges")
+
     private List<Player> listePlayers = new LinkedList<Player>();
 
     public String getIcone() {
@@ -67,7 +57,7 @@ public class Badge implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
+
     public List<Player> getListePlayers() {
         return listePlayers;
     }
@@ -86,10 +76,10 @@ public class Badge implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Badge)) {
+        if (!(object instanceof BadgeDTO)) {
             return false;
         }
-        Badge other = (Badge) object;
+        BadgeDTO other = (BadgeDTO) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
