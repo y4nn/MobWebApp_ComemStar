@@ -26,8 +26,8 @@ public class ApplicationConfig extends Application {
         resources.add(ch.comem.appli.services.REST.ClasseFacadeREST.class);
         resources.add(ch.comem.appli.services.REST.AnswerFacadeREST.class);
         resources.add(ch.comem.appli.services.REST.QuestionFacadeREST.class);
-        resources.add(ch.comem.appli.services.REST.SerieFacadeREST.class);
         resources.add(ch.comem.appli.services.REST.StudentFacadeREST.class);
+        resources.add(ch.comem.appli.services.REST.SerieFacadeREST.class);
         resources.add(ch.comem.appli.services.REST.CoursFacadeREST.class);
         return resources;
     }

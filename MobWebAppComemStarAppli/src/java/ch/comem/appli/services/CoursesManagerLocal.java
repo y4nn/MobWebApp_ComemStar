@@ -17,12 +17,16 @@ import javax.ejb.Local;
 @Local
 public interface CoursesManagerLocal {
 
-    Cours createCours(String name, List<Serie> series, List<Classe> classes);
+    Cours createCours(String name);
 
     Cours findCourse(Long id);
 
     Cours updateCours(Cours coursToEdit);
 
     Cours deleteCours(Long id);
+
+    Cours addClasse(Cours cours, Classe classe);
+
+    Cours addSerie(Cours cours, Serie serie);
     
 }

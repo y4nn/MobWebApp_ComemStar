@@ -17,12 +17,14 @@ import javax.ejb.Local;
 @Local
 public interface SeriesManagerLocal {
 
-    Serie createSerie(String name, Cours cours, List<Question> questions);
+    Serie createSerie(String name, Cours cours);
 
     Serie findSerie(Long id);
 
     Serie updateSerie(Serie serieToEdit);
 
     Serie deleteSerie(Long id);
+
+    Serie addQuestion(Serie serie, Question question);
     
 }

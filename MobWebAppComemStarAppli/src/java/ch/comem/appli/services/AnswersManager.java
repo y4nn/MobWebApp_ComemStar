@@ -25,6 +25,7 @@ public class AnswersManager implements AnswersManagerLocal {
         ans.setAnswer(answer);
         ans.setIsValid(isValid);
         ans.setQuestion(question);
+        question.addAnswer(ans);
         em.persist(ans); em.flush();
         return ans;
     }
@@ -54,6 +55,7 @@ public class AnswersManager implements AnswersManagerLocal {
     public Answer deleteAnswer(Long id) {
         Answer answer = this.findAnswer(id);
         if(answer != null){
+            answer.getQuestion().getReponse().remove(answer);
             em.remove(answer); em.flush();
         }
         return answer;

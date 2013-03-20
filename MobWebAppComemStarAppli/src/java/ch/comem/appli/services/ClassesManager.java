@@ -23,15 +23,15 @@ public class ClassesManager implements ClassesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Classe createClasse(String name, List<Student> listStudents, List<Cours> listCours) {
+    public Classe createClasse(String name) {
         Classe classe = new Classe();
         classe.setName(name);
-        classe.setStudent(listStudents);
-        classe.setListeCours(listCours);
         
         em.persist(classe); em.flush();
         return classe;
     }
+    
+    
 
     @Override
     public Classe findClasse(Long id) {
@@ -63,13 +63,33 @@ public class ClassesManager implements ClassesManagerLocal {
             }
             
             for (Cours cours : classe.getListeCours()) {
-                cours.setListeClasses(null);
+                cours.getListeClasses().remove(classe);
             }
             em.remove(classe);
             em.flush();
         }
         return classe;
     }
+
+    @Override
+    public Classe addStudent(Classe classe, Student student) {
+        classe.addStudent(student);
+        student.setClasse(classe);
+        em.flush();
+        return classe;
+    }
+
+    @Override
+    public Classe addCours(Classe classe, Cours cours) {
+        classe.addCours(cours);
+        cours.addClasse(classe);
+        em.flush();
+        return classe;
+    }
+    
+    
+    
+    
     
     
     

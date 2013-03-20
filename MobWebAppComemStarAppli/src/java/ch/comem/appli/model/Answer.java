@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,6 +52,7 @@ public class Answer implements Serializable {
         this.isValid = isValid;
     }
 
+    @XmlTransient
     public Question getQuestion() {
         return question;
     }
