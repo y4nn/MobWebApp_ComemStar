@@ -4,7 +4,12 @@
  */
 package ch.comem.game.services.REST;
 
+import ch.comem.game.dto.ApplicationDTO;
+import ch.comem.game.dto.EventDTO;
+import ch.comem.game.dto.RuleDTO;
 import ch.comem.game.model.Application;
+import ch.comem.game.model.Event;
+import ch.comem.game.model.Rule;
 import ch.comem.game.services.ApplicationsManagerLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -53,16 +58,39 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
         //super.remove(super.find(id));
-        Application appToDelete = applicationManager.findApplication(id);
-        applicationManager.deleteApplication(appToDelete);
+        //ApplicationDTO appToDelete = applicationManager.findApplication(id);
+        //applicationManager.deleteApplication(appToDelete);
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Application find(@PathParam("id") Long id) {
+    public ApplicationDTO find(@PathParam("id") Long id) {
         //return super.find(id);
-        return applicationManager.findApplication(id);
+       Application application = applicationManager.findApplication(id);
+       ApplicationDTO modelApplication = null;
+       if (application != null) {
+            List<Rule> rules = application.getRules();
+            List<Event> events = application.getEvents();
+            modelApplication = new ApplicationDTO();
+            modelApplication.setId(id);
+            modelApplication.setName(application.getName());
+            modelApplication.setDescription(application.getDescription());
+            for(Rule rule : rules){
+                 RuleDTO modelRule = new RuleDTO();
+                 modelRule.setId(rule.getId());
+                 modelRule.setEventType(rule.getEventType());
+                 modelRule.setNbPts(rule.getNbPts());
+                 modelApplication.addRule(modelRule);
+            }
+            for(Event event : events){
+                EventDTO modelEvent = new EventDTO();
+                modelEvent.setId(event.getId());
+                modelEvent.setType(event.getType());
+                modelApplication.addEvent(modelEvent);
+            }
+       }       
+       return modelApplication;
     }
 
     @GET
