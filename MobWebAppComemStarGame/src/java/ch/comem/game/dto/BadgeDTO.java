@@ -4,6 +4,7 @@
  */
 package ch.comem.game.dto;
 
+import ch.comem.game.model.Rule;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +22,15 @@ public class BadgeDTO implements Serializable {
     private String description;
     private String icone;
     private List<PlayerDTO> listePlayers = new LinkedList<PlayerDTO>();
+    private RuleDTO ruleDTO;
+
+    public RuleDTO getRule() {
+        return ruleDTO;
+    }
+
+    public void setRule(RuleDTO ruleDTO) {
+        this.ruleDTO = ruleDTO;
+    }
 
     public String getIcone() {
         return icone;

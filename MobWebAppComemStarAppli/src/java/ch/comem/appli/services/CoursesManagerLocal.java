@@ -28,5 +28,7 @@ public interface CoursesManagerLocal {
     Cours addClasse(Cours cours, Classe classe);
 
     Cours addSerie(Cours cours, Serie serie);
+
+    List<Cours> findAll();
     
 }

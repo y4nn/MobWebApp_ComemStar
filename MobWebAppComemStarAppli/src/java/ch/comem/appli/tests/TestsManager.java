@@ -49,11 +49,11 @@ public class TestsManager implements TestsManagerLocal {
         Classe mit39 = this.classesManager.createClasse("MIT39");
         Classe mm39 = this.classesManager.createClasse("MM39");
 
-        Student zik = this.studentsManager.createStudent("zikrija", "saric", null, null, mit39);
-        Student yann = this.studentsManager.createStudent("yann", "maillard", null, null, mit39);
-        Student fab = this.studentsManager.createStudent("fabien", "cornaz", null, null, mit39);
-        Student chr = this.studentsManager.createStudent("christophe", "chuchaud", null, null, mm39);
-        Student san = this.studentsManager.createStudent("sandra", "gindroz", null, null, mm39);
+        Student zik = this.studentsManager.createStudent("zikrija", "saric", "zikrija.saric@heig-vd.ch", "pass", mit39);
+        Student yann = this.studentsManager.createStudent("yann", "maillard", "yann.maillard@heig-vd.ch", "pass", mit39);
+        Student fab = this.studentsManager.createStudent("fabien", "cornaz", "fabien.cornaz@heig-vd.ch", "pass", mit39);
+        Student chr = this.studentsManager.createStudent("christophe", "chuchaud", "christophe.curchaud@heig-vd.ch", "pass", mm39);
+        Student san = this.studentsManager.createStudent("sandra", "gindroz", "sandra.gindroz@heig-vd.ch", "pass", mm39);
         
         
 //        this.classesManager.addStudent(mit39, zik);
@@ -69,20 +69,37 @@ public class TestsManager implements TestsManagerLocal {
         
         
         //this.coursesManager.createCours("MobileWebService", null, listeClasses);
-        Cours coursMWS = this.coursesManager.createCours("Mobile Web Service");
-        this.coursesManager.addClasse(coursMWS, mm39);
-        this.coursesManager.addClasse(coursMWS, mit39);
-        //coursMWS.addClasse(mit39);
-        //coursMWS.addClasse(mm39);
+        //Cours coursMWS = this.coursesManager.createCours("Mobile Web Service");
+        //this.coursesManager.addClasse(coursMWS, mm39);
+        //this.coursesManager.addClasse(coursMWS, mit39);
+        Classe ig38 = this.classesManager.createClasse("IG38");
         
-        //List<Serie> listeSerie = new LinkedList<Serie>();
-        //listeSerie.add(this.seriesManager.createSerie("Intro JEE", null, listeQuestionsJEE));
-        //listeSerie.add(this.seriesManager.createSerie("REST", null, listeQuestionsREST));
-        Serie serieIntroJEE = this.seriesManager.createSerie("Intro JEE", coursMWS);
-        //serieIntroJEE.addQuestion(q1);
-        //serieIntroJEE.addQuestion(q2);
-        Serie serieREST     = this.seriesManager.createSerie("REST", coursMWS);
-        //serieREST.addQuestion(q3);
+        Cours coursMWS = this.coursesManager.createCours("Mobile WEB Service");
+        Cours coursIHM = this.coursesManager.createCours("IHM");
+        Cours coursPOO = this.coursesManager.createCours("POO");
+        Cours coursNEWS = this.coursesManager.createCours("Atelier NEWS Room");
+        Cours coursFI = this.coursesManager.createCours("Finances et Investissements");
+        
+        this.classesManager.addCours(mm39, coursPOO);
+        this.classesManager.addCours(mm39, coursMWS);
+        this.classesManager.addCours(mm39, coursNEWS);
+        this.coursesManager.addClasse(coursIHM, mit39);
+        this.coursesManager.addClasse(coursMWS, mit39);
+        this.coursesManager.addClasse(coursPOO, mit39);
+        this.coursesManager.addClasse(coursFI, ig38);
+        
+        
+        Serie serieIntroJEE     = this.seriesManager.createSerie("Intro JEE", coursMWS);
+        Serie serieREST         = this.seriesManager.createSerie("REST", coursMWS);
+        Serie serieLayer        = this.seriesManager.createSerie("Layers", coursIHM);
+        Serie serieActions      = this.seriesManager.createSerie("Actions", coursIHM);
+        Serie serieRecursivite  = this.seriesManager.createSerie("Recursivité", coursIHM);
+        Serie serieIntroPOO     = this.seriesManager.createSerie("Introduction aux classes", coursPOO);
+        Serie serieHeritage     = this.seriesManager.createSerie("Heritage", coursPOO);
+        Serie serieImplement    = this.seriesManager.createSerie("Extends ou Implements", coursPOO);
+        Serie serieNewsProcess  = this.seriesManager.createSerie("Prcessus de créations d'un journal", coursNEWS);
+        Serie serieNewsPerti    = this.seriesManager.createSerie("Pertinance des articles", coursNEWS);
+        
         
         Question q1 = this.questionsManager.createQuestion("JEE: Combien font 2x2 ?", serieIntroJEE);
         this.answersManager.createAnswer("42", Boolean.FALSE, q1);

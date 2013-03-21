@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -20,36 +21,57 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQuery(name="findRule",
-        query="SELECT r.id, r.eventType, r.nbPts " +
-              "FROM Rule r")
+@NamedQuery(name = "findRule",
+        query = "SELECT r.id, r.eventType, r.nbPtsMin, r.nbPtsMax "
+        + "FROM Rule r")
 public class Rule implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @ManyToOne(fetch = FetchType.LAZY) 
+    @ManyToOne(fetch = FetchType.LAZY)
     protected Application application;
-    
-    private int nbPts;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Badge badge;
+    private int nbPtsMin;
+    private int nbPtsMax;
     private String eventType;
-    
-    public void setApplication(Application application){
+
+    public Rule() {
+        this.badge = null;
+    }
+
+    public int getNbPtsMin() {
+        return nbPtsMin;
+    }
+
+    public void setNbPtsMin(int nbPtsMin) {
+        this.nbPtsMin = nbPtsMin;
+    }
+
+    public int getNbPtsMax() {
+        return nbPtsMax;
+    }
+
+    public void setNbPtsMax(int nbPtsMax) {
+        this.nbPtsMax = nbPtsMax;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Badge badge) {
+        this.badge = badge;
+    }
+
+    public void setApplication(Application application) {
         this.application = application;
     }
-    
-    public Application getApplication(){
+
+    public Application getApplication() {
         return this.application;
-    }
-
-    public int getNbPts() {
-        return nbPts;
-    }
-
-    public void setNbPts(int nbPts) {
-        this.nbPts = nbPts;
     }
 
     public String getEventType() {

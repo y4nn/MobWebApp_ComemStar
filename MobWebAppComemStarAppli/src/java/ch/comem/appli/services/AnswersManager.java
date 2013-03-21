@@ -6,9 +6,11 @@ package ch.comem.appli.services;
 
 import ch.comem.appli.model.Answer;
 import ch.comem.appli.model.Question;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -59,6 +61,12 @@ public class AnswersManager implements AnswersManagerLocal {
             em.remove(answer); em.flush();
         }
         return answer;
+    }
+
+    @Override
+    public List<Answer> findAll() {
+        TypedQuery<Answer> query = em.createNamedQuery("Answer.findAll", Answer.class);
+        return query.getResultList();
     }
     
     

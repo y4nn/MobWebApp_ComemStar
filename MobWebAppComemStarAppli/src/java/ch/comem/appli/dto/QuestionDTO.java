@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.appli.model;
+package ch.comem.appli.dto;
 
+import ch.comem.appli.model.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -22,21 +21,12 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Ziki
  */
-@Entity
 @XmlRootElement
-@NamedQueries({
-@NamedQuery(name="Question.findAll", query="select object(o) from Question o")//,
-//@NamedQuery(name="Customer.findById",query="select object(cust) from Customer cust where cust.custid = :custid"),
-//@NamedQuery(name="Customer.findByEmail",query="select object(cust) from Customer cust where cust.email = :email and cust.password = :password")
-})
-public class Question implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class QuestionDTO implements Serializable {
     private Long id;
     private String question;
-    @ManyToOne private Serie serie;
-    @OneToMany(mappedBy="question") private List<Answer> reponse = new LinkedList<Answer>();
+    private SerieDTO serie;
+    private List<AnswerDTO> reponse = new LinkedList<AnswerDTO>();
 
     public Long getId() {
         return id;
@@ -54,24 +44,23 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    @XmlTransient
-    public Serie getSerie() {
+    public SerieDTO getSerie() {
         return serie;
     }
 
-    public void setSerie(Serie serie) {
+    public void setSerie(SerieDTO serie) {
         this.serie = serie;
     }
 
-    public List<Answer> getReponse() {
+    public List<AnswerDTO> getReponse() {
         return reponse;
     }
 
-    public void setReponse(List<Answer> reponse) {
+    public void setReponse(List<AnswerDTO> reponse) {
         this.reponse = reponse;
     }
     
-    public void addAnswer(Answer answer) {
+    public void addAnswer(AnswerDTO answer) {
         this.reponse.add(answer);
     }
 
@@ -88,7 +77,7 @@ public class Question implements Serializable {
         if (!(object instanceof Question)) {
             return false;
         }
-        Question other = (Question) object;
+        QuestionDTO other = (QuestionDTO) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

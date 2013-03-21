@@ -2,46 +2,26 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.appli.model;
+package ch.comem.appli.dto;
 
+import ch.comem.appli.model.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Ziki
  */
-@Entity
-@XmlRootElement
-@NamedQueries({
-@NamedQuery(name="Cours.findAll", query="select object(o) from Cours o")//,
-//@NamedQuery(name="Customer.findById",query="select object(cust) from Customer cust where cust.custid = :custid"),
-//@NamedQuery(name="Customer.findByEmail",query="select object(cust) from Customer cust where cust.email = :email and cust.password = :password")
-})
-public class Cours implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CoursDTO implements Serializable {
+    
     private Long id;
     private String name;
-    @ManyToMany(mappedBy="listeCours") private List<Classe> listeClasses = new LinkedList<Classe>();
-    @OneToMany(mappedBy="cours") private List<Serie> serie = new LinkedList<Serie>();
+    private List<ClasseDTO> listeClasses = new LinkedList<ClasseDTO>();
+    private List<Serie> serie = new LinkedList<Serie>();
 
     
-    public Cours(){
+    public CoursDTO(){
         //this.listeClasses = new LinkedList<Classes>();
     }
 
@@ -61,16 +41,15 @@ public class Cours implements Serializable {
         this.name = name;
     }
 
-    @XmlTransient
-    public List<Classe> getListeClasses() {
+    public List<ClasseDTO> getListeClasses() {
         return listeClasses;
     }
 
-    public void setListeClasses(List<Classe> listeClasses) {
+    public void setListeClasses(List<ClasseDTO> listeClasses) {
         this.listeClasses = listeClasses;
     }
 
-    public void addClasse(Classe classe) {
+    public void addClasse(ClasseDTO classe) {
         this.listeClasses.add(classe);
         //classe.addCours(this);//
         
@@ -99,10 +78,10 @@ public class Cours implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cours)) {
+        if (!(object instanceof CoursDTO)) {
             return false;
         }
-        Cours other = (Cours) object;
+        CoursDTO other = (CoursDTO) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
