@@ -9,11 +9,13 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -35,6 +37,17 @@ public class Badge implements Serializable {
     private String icone;
     @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "listeBadges")
     private List<Player> listePlayers = new LinkedList<Player>();
+    @OneToOne(fetch = FetchType.LAZY)
+    private Rule rule;
+
+    @XmlTransient
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
 
     public String getIcone() {
         return icone;

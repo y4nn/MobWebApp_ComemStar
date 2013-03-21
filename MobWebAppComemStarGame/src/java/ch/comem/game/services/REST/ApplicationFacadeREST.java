@@ -33,10 +33,12 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("applications")
 public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
+
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
     @EJB
     ApplicationsManagerLocal applicationManager;
+
     public ApplicationFacadeREST() {
         //super(Application.class);
     }
@@ -68,30 +70,31 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @Produces({"application/xml", "application/json"})
     public ApplicationDTO find(@PathParam("id") Long id) {
         //return super.find(id);
-       Application application = applicationManager.findApplication(id);
-       ApplicationDTO modelApplication = null;
-       if (application != null) {
+        Application application = applicationManager.findApplication(id);
+        ApplicationDTO modelApplication = null;
+        if (application != null) {
             List<Rule> rules = application.getRules();
             List<Event> events = application.getEvents();
             modelApplication = new ApplicationDTO();
             modelApplication.setId(id);
             modelApplication.setName(application.getName());
             modelApplication.setDescription(application.getDescription());
-            for(Rule rule : rules){
-                 RuleDTO modelRule = new RuleDTO();
-                 modelRule.setId(rule.getId());
-                 modelRule.setEventType(rule.getEventType());
-                 modelRule.setNbPts(rule.getNbPts());
-                 modelApplication.addRule(modelRule);
+            for (Rule rule : rules) {
+                RuleDTO modelRule = new RuleDTO();
+                modelRule.setId(rule.getId());
+                modelRule.setEventType(rule.getEventType());
+                modelRule.setNbPtsMax(rule.getNbPtsMax());
+                modelRule.setNbPtsMin(rule.getNbPtsMin());
+                modelApplication.addRule(modelRule);
             }
-            for(Event event : events){
+            for (Event event : events) {
                 EventDTO modelEvent = new EventDTO();
                 modelEvent.setId(event.getId());
                 modelEvent.setType(event.getType());
                 modelApplication.addEvent(modelEvent);
             }
-       }       
-       return modelApplication;
+        }
+        return modelApplication;
     }
 
     @GET
@@ -100,7 +103,7 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
         //return super.findAll();
         List<ApplicationDTO> listApplicationsDTO = new ArrayList();
         List<Application> listApplications = applicationManager.findAllApplications();
-        for(Application application : listApplications){
+        for (Application application : listApplications) {
             ApplicationDTO modelApplication = new ApplicationDTO();
             //List<Event> events = new ArrayList();
             //List<Rule> rules = new ArrayList();
@@ -109,18 +112,19 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
             modelApplication.setId(application.getId());
             modelApplication.setName(application.getName());
             modelApplication.setDescription(application.getDescription());
-            for(Event event : events){
+            for (Event event : events) {
                 EventDTO modelEvent = new EventDTO();
                 modelEvent.setId(event.getId());
                 modelEvent.setType(event.getType());
                 modelApplication.addEvent(modelEvent);
             }
-            for(Rule rule : rules){
-                 RuleDTO modelRule = new RuleDTO();
-                 modelRule.setId(rule.getId());
-                 modelRule.setEventType(rule.getEventType());
-                 modelRule.setNbPts(rule.getNbPts());
-                 modelApplication.addRule(modelRule);
+            for (Rule rule : rules) {
+                RuleDTO modelRule = new RuleDTO();
+                modelRule.setId(rule.getId());
+                modelRule.setEventType(rule.getEventType());
+                modelRule.setNbPtsMax(rule.getNbPtsMax());
+                modelRule.setNbPtsMin(rule.getNbPtsMin());
+                modelApplication.addRule(modelRule);
             }
             listApplicationsDTO.add(modelApplication);
         }
@@ -128,24 +132,21 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     }
 
     /*@GET
-    @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
-    public List<Application> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        //return super.findRange(new int[]{from, to});
-        return null;
-    }
+     @Path("{from}/{to}")
+     @Produces({"application/xml", "application/json"})
+     public List<Application> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+     //return super.findRange(new int[]{from, to});
+     return null;
+     }
 
-    @GET
-    @Path("count")
-    @Produces("text/plain")
-    public String countREST() {
-        //return String.valueOf(super.count());
-        return null;
-    }*/
-
-
+     @GET
+     @Path("count")
+     @Produces("text/plain")
+     public String countREST() {
+     //return String.valueOf(super.count());
+     return null;
+     }*/
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 }

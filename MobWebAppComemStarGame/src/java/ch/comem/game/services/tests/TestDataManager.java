@@ -42,7 +42,7 @@ public class TestDataManager implements TestDataManagerLocal {
             Badge badge = this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
             this.eventsManager.createEvent("Type" + i, app, player);
             this.playersManager.associateBadge(player, badge);
-            this.rulesManager.createRule("Type" + i, i, app);
+            this.rulesManager.createRule("Type" + i, 50, 70, app);
         }
     }
 }

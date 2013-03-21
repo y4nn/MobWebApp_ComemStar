@@ -4,7 +4,6 @@
  */
 package ch.comem.game.dto;
 
-import ch.comem.game.model.Application;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -16,9 +15,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class RuleDTO implements Serializable {
 
     private Long id;
-    protected ApplicationDTO application;
-    private int nbPts;
+    private int nbPtsMin;
+    private int nbPtsMax;
     private String eventType;
+    protected ApplicationDTO application;
+    private BadgeDTO badgeDTO;
+
+    public BadgeDTO getBadgeDTO() {
+        return badgeDTO;
+    }
+
+    public void setBadgeDTO(BadgeDTO badgeDTO) {
+        this.badgeDTO = badgeDTO;
+    }
 
     public void setApplication(ApplicationDTO application) {
         this.application = application;
@@ -28,12 +37,20 @@ public class RuleDTO implements Serializable {
         return this.application;
     }
 
-    public int getNbPts() {
-        return nbPts;
+    public int getNbPtsMin() {
+        return nbPtsMin;
     }
 
-    public void setNbPts(int nbPts) {
-        this.nbPts = nbPts;
+    public void setNbPtsMin(int nbPtsMin) {
+        this.nbPtsMin = nbPtsMin;
+    }
+
+    public int getNbPtsMax() {
+        return nbPtsMax;
+    }
+
+    public void setNbPtsMax(int nbPtsMax) {
+        this.nbPtsMax = nbPtsMax;
     }
 
     public String getEventType() {
