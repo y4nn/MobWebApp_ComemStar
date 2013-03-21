@@ -9,7 +9,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -54,6 +53,7 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
        return applicationToUpdate;
    }
    
+    @Override
    public void deleteApplication(Application application){
        em.remove(application);
    }

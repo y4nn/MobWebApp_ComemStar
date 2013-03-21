@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @XmlRootElement
 @NamedQuery(name="findApplication",
-        query="SELECT a.id, a.name, a.description " +
+        query="SELECT a " +
               "FROM Application a")
 public class Application implements Serializable {
     private static final long serialVersionUID = 1L;
