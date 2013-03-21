@@ -89,6 +89,7 @@ public class PlayersManager implements PlayersManagerLocal {
         Badge badge = em.find(Badge.class, badgeAAssocie.getId());
         player.getListeBadges().add(badge);
         badge.getListePlayers().add(player);
+        em.flush();
     }
     
     @Override

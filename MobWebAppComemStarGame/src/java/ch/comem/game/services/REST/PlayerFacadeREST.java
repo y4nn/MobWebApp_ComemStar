@@ -46,8 +46,8 @@ public class PlayerFacadeREST {
 
     @PUT
     @Consumes({"application/xml", "application/json"})
-    public void edit(Player entity) {
-        // super.edit(entity);
+    public void edit(Player player, Badge badge) {
+        this.manager.associateBadge(player, badge);
     }
 
     @DELETE

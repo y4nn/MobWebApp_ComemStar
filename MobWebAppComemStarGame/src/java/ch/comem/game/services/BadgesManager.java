@@ -81,7 +81,7 @@ public class BadgesManager implements BadgesManagerLocal {
 
     @Override
     public List<Badge> readAllBadges() {
-        TypedQuery<Badge> query = em.createNamedQuery("Student.findAll", Badge.class);
+        TypedQuery<Badge> query = em.createNamedQuery("Badge.findAll", Badge.class);
         return query.getResultList();
     }
 
