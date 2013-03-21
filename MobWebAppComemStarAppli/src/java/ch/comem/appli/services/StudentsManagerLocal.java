@@ -25,5 +25,7 @@ public interface StudentsManagerLocal {
     Student deleteStudent(Long id);
 
     List<Student> findAll();
+
+    Student loginStudent(String mail, String pass);
     
 }

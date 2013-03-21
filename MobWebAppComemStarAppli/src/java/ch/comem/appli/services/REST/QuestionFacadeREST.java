@@ -5,7 +5,9 @@
 package ch.comem.appli.services.REST;
 
 import ch.comem.appli.model.Question;
+import ch.comem.appli.services.QuestionsManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,66 +25,49 @@ import javax.ws.rs.Produces;
  * @author Ziki
  */
 @Stateless
-@Path("ch.comem.appli.model.question")
-public class QuestionFacadeREST extends AbstractFacade<Question> {
-    @PersistenceContext(unitName = "MobWebAppComemStarAppliPU")
-    private EntityManager em;
+@Path("questions")
+public class QuestionFacadeREST{
+    @EJB
+    private QuestionsManagerLocal questionsManager;
 
     public QuestionFacadeREST() {
-        super(Question.class);
     }
 
     @POST
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Question entity) {
-        super.create(entity);
+        this.questionsManager.createQuestion(entity.getQuestion(), entity.getSerie());
     }
 
     @PUT
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void edit(Question entity) {
-        super.edit(entity);
+        this.questionsManager.updateQuestion(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+        this.questionsManager.deleteQuestion(id);
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
     public Question find(@PathParam("id") Long id) {
-        return super.find(id);
+        return this.questionsManager.findQuestion(id);
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Question> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
-    public List<Question> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
+        return this.questionsManager.findAll();
     }
 
     @GET
     @Path("count")
     @Produces("text/plain")
     public String countREST() {
-        return String.valueOf(super.count());
+        return String.valueOf(this.questionsManager.findAll().size());
     }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
 }

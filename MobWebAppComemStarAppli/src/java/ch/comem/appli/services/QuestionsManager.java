@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -71,6 +72,12 @@ public class QuestionsManager implements QuestionsManagerLocal {
         question.addAnswer(answer);
         answer.setQuestion(question);
         return null;
+    }
+
+    @Override
+    public List<Question> findAll() {
+        TypedQuery<Question> query = em.createNamedQuery("Question.findAll", Question.class);
+        return query.getResultList();
     }
 
     

@@ -5,6 +5,7 @@
 package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
+import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import java.util.LinkedList;
 import java.util.List;
@@ -91,6 +92,13 @@ public class StudentsManager implements StudentsManagerLocal {
         return query.getResultList();
         
         //return liste;
+    }
+
+    @Override
+    public Student loginStudent(String mail, String pass) {
+        TypedQuery<Student> query = em.createNamedQuery("Student.findByMailAndPass", Student.class).setParameter("mail", mail).setParameter("pass", pass);
+        System.out.println("XXXXXXXXXXXX "+ query.getSingleResult().getFirstName());
+        return query.getSingleResult();
     }
     
     
