@@ -7,10 +7,12 @@ package ch.comem.appli.services;
 import ch.comem.appli.model.Cours;
 import ch.comem.appli.model.Question;
 import ch.comem.appli.model.Serie;
+import ch.comem.appli.model.Student;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -71,6 +73,20 @@ public class SeriesManager implements SeriesManagerLocal {
         question.setSerie(serie);
         return serie;
     }
+
+    @Override
+    public List<Serie> findAll() {
+        TypedQuery<Serie> query = em.createNamedQuery("Serie.findAll", Serie.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Serie> findByCours(Long idCours) {
+        TypedQuery<Serie> query = em.createNamedQuery("Serie.findByCours", Serie.class).setParameter("coursID", idCours);
+        return query.getResultList();
+    }
+    
+    
     
     
     

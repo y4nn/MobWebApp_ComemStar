@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -85,6 +86,12 @@ public class CoursesManager implements CoursesManagerLocal {
             em.flush();
         }
         return cours;
+    }
+
+    @Override
+    public List<Cours> findAll() {
+        TypedQuery<Cours> query = em.createNamedQuery("Cours.findAll", Cours.class);
+        return query.getResultList();
     }
 
     

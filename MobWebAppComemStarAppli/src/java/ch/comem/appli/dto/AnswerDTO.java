@@ -2,16 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.comem.appli.model;
+package ch.comem.appli.dto;
 
+import ch.comem.appli.model.*;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -19,21 +18,12 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Ziki
  */
-@Entity
 @XmlRootElement
-@NamedQueries({
-@NamedQuery(name="Student.Answer", query="select object(o) from Answer o")//,
-//@NamedQuery(name="Customer.findById",query="select object(cust) from Customer cust where cust.custid = :custid"),
-//@NamedQuery(name="Customer.findByEmail",query="select object(cust) from Customer cust where cust.email = :email and cust.password = :password")
-})
-public class Answer implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AnswerDTO implements Serializable {
     private Long id;
     private String answer;
     private Boolean isValid;
-    @ManyToOne private Question question;
+    private QuestionDTO question;
 
     public Long getId() {
         return id;
@@ -60,11 +50,11 @@ public class Answer implements Serializable {
     }
 
     @XmlTransient
-    public Question getQuestion() {
+    public QuestionDTO getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(QuestionDTO question) {
         this.question = question;
     }
 
@@ -81,7 +71,7 @@ public class Answer implements Serializable {
         if (!(object instanceof Answer)) {
             return false;
         }
-        Answer other = (Answer) object;
+        AnswerDTO other = (AnswerDTO) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

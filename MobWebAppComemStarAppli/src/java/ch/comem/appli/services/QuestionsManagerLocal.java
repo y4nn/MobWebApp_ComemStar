@@ -26,5 +26,7 @@ public interface QuestionsManagerLocal {
     Question deleteQuestion(Long id);
 
     Question addReponse(Question question, Answer answer);
+
+    List<Question> findAll();
     
 }

@@ -6,6 +6,7 @@ package ch.comem.appli.services;
 
 import ch.comem.appli.model.Answer;
 import ch.comem.appli.model.Question;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -22,5 +23,7 @@ public interface AnswersManagerLocal {
     Answer updateAnswer(Answer answerToEdit);
 
     Answer deleteAnswer(Long id);
+
+    List<Answer> findAll();
     
 }

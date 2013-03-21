@@ -26,5 +26,8 @@ public interface SeriesManagerLocal {
     Serie deleteSerie(Long id);
 
     Serie addQuestion(Serie serie, Question question);
-    
+
+    List<Serie> findAll();
+
+    List<Serie> findByCours(Long idCours);    
 }

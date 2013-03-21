@@ -6,12 +6,14 @@ package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
 import ch.comem.appli.model.Cours;
+import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -85,6 +87,12 @@ public class ClassesManager implements ClassesManagerLocal {
         cours.addClasse(classe);
         em.flush();
         return classe;
+    }
+
+    @Override
+    public List<Classe> findAll() {
+        TypedQuery<Classe> query = em.createNamedQuery("Classe.findAll", Classe.class);
+        return query.getResultList();
     }
     
     
