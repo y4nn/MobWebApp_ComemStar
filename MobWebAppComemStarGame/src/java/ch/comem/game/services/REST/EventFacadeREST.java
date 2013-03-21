@@ -5,7 +5,9 @@
 package ch.comem.game.services.REST;
 
 import ch.comem.game.model.Event;
+import ch.comem.game.model.Rule;
 import ch.comem.game.services.EventsManagerLocal;
+import ch.comem.game.services.PlayersManagerLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,6 +33,8 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
     private EntityManager em;
     @EJB
     EventsManagerLocal eventsManager;
+    @EJB
+    PlayersManagerLocal playersManager;
 
     public EventFacadeREST() {
         //super(Event.class);
@@ -40,8 +44,14 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
     @Consumes({"application/xml", "application/json"})
     public void create(Event entity) {
         //super.create(entity);
-        eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
-        
+        Event event = eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
+        List<Rule> rules = event.getApplication().getRules();
+        for(Rule rule : rules){
+            if(event.getType() == rule.getEventType()){
+                //playersManager.associateBadge(event.getPlayer(), event.);
+                break;
+            }
+        }
     }
 
     @PUT
