@@ -31,7 +31,7 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.application")
+@Path("applications")
 public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
@@ -98,23 +98,36 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @Produces({"application/xml", "application/json"})
     public List<ApplicationDTO> findAll() {
         //return super.findAll();
-        List<ApplicationDTO> listApplicationsDTO = null;
-        List<Application> listApplications= applicationManager.findAllApplications();
+        List<ApplicationDTO> listApplicationsDTO = new ArrayList();
+        List<Application> listApplications = applicationManager.findAllApplications();
         for(Application application : listApplications){
             ApplicationDTO modelApplication = new ApplicationDTO();
-            List<Event> events = new ArrayList();
-            List<Rule> rules = new ArrayList();
-            events = application.getEvents();
+            //List<Event> events = new ArrayList();
+            //List<Rule> rules = new ArrayList();
+            List<Event> events = application.getEvents();
+            List<Rule> rules = application.getRules();
             modelApplication.setId(application.getId());
             modelApplication.setName(application.getName());
             modelApplication.setDescription(application.getDescription());
-            
+            for(Event event : events){
+                EventDTO modelEvent = new EventDTO();
+                modelEvent.setId(event.getId());
+                modelEvent.setType(event.getType());
+                modelApplication.addEvent(modelEvent);
+            }
+            for(Rule rule : rules){
+                 RuleDTO modelRule = new RuleDTO();
+                 modelRule.setId(rule.getId());
+                 modelRule.setEventType(rule.getEventType());
+                 modelRule.setNbPts(rule.getNbPts());
+                 modelApplication.addRule(modelRule);
+            }
             listApplicationsDTO.add(modelApplication);
         }
         return listApplicationsDTO;
     }
 
-    @GET
+    /*@GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
     public List<Application> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
@@ -128,7 +141,7 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     public String countREST() {
         //return String.valueOf(super.count());
         return null;
-    }
+    }*/
 
 
     protected EntityManager getEntityManager() {

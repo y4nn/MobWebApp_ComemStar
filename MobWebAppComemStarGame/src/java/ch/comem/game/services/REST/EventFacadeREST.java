@@ -5,7 +5,9 @@
 package ch.comem.game.services.REST;
 
 import ch.comem.game.model.Event;
+import ch.comem.game.services.EventsManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,50 +25,54 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.event")
-public class EventFacadeREST extends AbstractFacade<Event> {
+@Path("events")
+public class EventFacadeREST /*extends AbstractFacade<Event> */{
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
+    @EJB
+    EventsManagerLocal eventsManager;
 
     public EventFacadeREST() {
-        super(Event.class);
+        //super(Event.class);
     }
 
     @POST
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Event entity) {
-        super.create(entity);
+        //super.create(entity);
+        eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
+        
     }
 
     @PUT
-    @Override
     @Consumes({"application/xml", "application/json"})
     public void edit(Event entity) {
-        super.edit(entity);
+        //super.edit(entity);
+        eventsManager.updateEvent(entity);
     }
 
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+        //super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
     public Event find(@PathParam("id") Long id) {
-        return super.find(id);
+        //return super.find(id);
+        return null;
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Event> findAll() {
-        return super.findAll();
+        //return super.findAll();
+        return null;
     }
 
-    @GET
+    /*@GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
     public List<Event> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
@@ -78,9 +84,8 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
-    }
+    }*/
 
-    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
