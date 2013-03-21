@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -76,6 +77,12 @@ public class BadgesManager implements BadgesManagerLocal {
             return badgeToDelete;
         }
         return null;
+    }
+
+    @Override
+    public List<Badge> readAllBadges() {
+        TypedQuery<Badge> query = em.createNamedQuery("Student.findAll", Badge.class);
+        return query.getResultList();
     }
 
 }

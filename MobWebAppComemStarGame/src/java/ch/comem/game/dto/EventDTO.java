@@ -4,7 +4,6 @@
  */
 package ch.comem.game.dto;
 
-import ch.comem.game.model.*;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -14,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class EventDTO implements Serializable {
-    
+
     private Long id;
     protected ApplicationDTO application;
     private PlayerDTO player;

@@ -29,7 +29,7 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.player")
+@Path("players")
 public class PlayerFacadeREST {
 
     @EJB
@@ -41,7 +41,7 @@ public class PlayerFacadeREST {
     @POST
     @Consumes({"application/xml", "application/json"})
     public void create(Player player) {
-        this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(),player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
+        this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
     }
 
     @PUT
