@@ -11,6 +11,7 @@ import ch.comem.game.model.Application;
 import ch.comem.game.model.Event;
 import ch.comem.game.model.Rule;
 import ch.comem.game.services.ApplicationsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -58,8 +59,8 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
         //super.remove(super.find(id));
-        //ApplicationDTO appToDelete = applicationManager.findApplication(id);
-        //applicationManager.deleteApplication(appToDelete);
+        Application appToDelete = applicationManager.findApplication(id);
+        applicationManager.deleteApplication(appToDelete);
     }
 
     @GET
@@ -95,9 +96,22 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Application> findAll() {
+    public List<ApplicationDTO> findAll() {
         //return super.findAll();
-        return applicationManager.findAllApplications();
+        List<ApplicationDTO> listApplicationsDTO = null;
+        List<Application> listApplications= applicationManager.findAllApplications();
+        for(Application application : listApplications){
+            ApplicationDTO modelApplication = new ApplicationDTO();
+            List<Event> events = new ArrayList();
+            List<Rule> rules = new ArrayList();
+            events = application.getEvents();
+            modelApplication.setId(application.getId());
+            modelApplication.setName(application.getName());
+            modelApplication.setDescription(application.getDescription());
+            
+            listApplicationsDTO.add(modelApplication);
+        }
+        return listApplicationsDTO;
     }
 
     @GET
