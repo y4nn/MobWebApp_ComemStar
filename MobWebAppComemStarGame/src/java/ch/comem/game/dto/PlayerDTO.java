@@ -4,25 +4,23 @@
  */
 package ch.comem.game.dto;
 
-import ch.comem.game.model.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Service-Info
  */
-
+@XmlRootElement
 public class PlayerDTO implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String lastName, firstName, email;
     private int nbPoints;
-    private List<Badge> listeBadges = new LinkedList<Badge>();
-    protected List<Event> listeEvents = new LinkedList<Event>();
+    private List<BadgeDTO> listeBadges = new LinkedList<BadgeDTO>();
+    protected List<EventDTO> listeEvents = new LinkedList<EventDTO>();
 
     public Long getId() {
         return id;
@@ -64,19 +62,19 @@ public class PlayerDTO implements Serializable {
         this.nbPoints = nbPoints;
     }
 
-    public List<Badge> getListeBadges() {
+    public List<BadgeDTO> getListeBadges() {
         return listeBadges;
     }
 
-    public void setListeBadges(List<Badge> listeBadges) {
+    public void setListeBadges(List<BadgeDTO> listeBadges) {
         this.listeBadges = listeBadges;
     }
 
-    public List<Event> getListeEvents() {
+    public List<EventDTO> getListeEvents() {
         return listeEvents;
     }
-    
-    public void setListeEvents(List<Event> listeEvents) {
+
+    public void setListeEvents(List<EventDTO> listeEvents) {
         this.listeEvents = listeEvents;
     }
 

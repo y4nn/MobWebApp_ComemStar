@@ -8,34 +8,33 @@ import ch.comem.game.model.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author fraud_000
  */
-
+@XmlRootElement
 public class ApplicationDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     private Long id;
-    
-    protected List<Rule> rules = new LinkedList<Rule>();
-    protected List<Event> events = new LinkedList<Event>();
-    
-    public List<Rule> getRules(){
+    protected List<RuleDTO> rules = new LinkedList<RuleDTO>();
+    protected List<EventDTO> events = new LinkedList<EventDTO>();
+
+    public List<RuleDTO> getRules() {
         return this.rules;
     }
-    
-    public Rule addRule(Rule rule){
+
+    public RuleDTO addRule(RuleDTO rule) {
         getRules().add(rule);
         return rule;
     }
 
-    public List<Event> getEvents() {
+    public List<EventDTO> getEvents() {
         return this.events;
     }
 
-    public Event addEvent(Event event) {
+    public EventDTO addEvent(EventDTO event) {
         this.getEvents().add(event);
         return event;
     }
@@ -90,5 +89,4 @@ public class ApplicationDTO implements Serializable {
     public String toString() {
         return "ch.comem.game.model.Application[ id=" + id + " ]";
     }
-    
 }

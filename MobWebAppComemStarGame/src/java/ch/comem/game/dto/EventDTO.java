@@ -4,22 +4,19 @@
  */
 package ch.comem.game.dto;
 
-import ch.comem.game.model.*;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sandra
  */
-
+@XmlRootElement
 public class EventDTO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     private Long id;
-
-    protected Application application;
-    private Player player;
+    protected ApplicationDTO application;
+    private PlayerDTO player;
     private String type;
 
     public String getType() {
@@ -38,19 +35,19 @@ public class EventDTO implements Serializable {
         this.id = id;
     }
 
-    public Application getApplication() {
+    public ApplicationDTO getApplication() {
         return application;
     }
 
-    public void setApplication(Application application) {
+    public void setApplication(ApplicationDTO application) {
         this.application = application;
     }
 
-    public Player getPlayer() {
+    public PlayerDTO getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(PlayerDTO player) {
         this.player = player;
     }
 

@@ -4,8 +4,14 @@
  */
 package ch.comem.game.services.REST;
 
+import ch.comem.game.dto.ApplicationDTO;
+import ch.comem.game.dto.EventDTO;
+import ch.comem.game.dto.RuleDTO;
 import ch.comem.game.model.Application;
+import ch.comem.game.model.Event;
+import ch.comem.game.model.Rule;
 import ch.comem.game.services.ApplicationsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,7 +31,7 @@ import javax.ws.rs.Produces;
  * @author Service-Info
  */
 @Stateless
-@Path("ch.comem.game.model.application")
+@Path("applications")
 public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @PersistenceContext(unitName = "MobWebAppComemStarGamePU")
     private EntityManager em;
@@ -60,19 +66,68 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Application find(@PathParam("id") Long id) {
+    public ApplicationDTO find(@PathParam("id") Long id) {
         //return super.find(id);
-        return applicationManager.findApplication(id);
+       Application application = applicationManager.findApplication(id);
+       ApplicationDTO modelApplication = null;
+       if (application != null) {
+            List<Rule> rules = application.getRules();
+            List<Event> events = application.getEvents();
+            modelApplication = new ApplicationDTO();
+            modelApplication.setId(id);
+            modelApplication.setName(application.getName());
+            modelApplication.setDescription(application.getDescription());
+            for(Rule rule : rules){
+                 RuleDTO modelRule = new RuleDTO();
+                 modelRule.setId(rule.getId());
+                 modelRule.setEventType(rule.getEventType());
+                 modelRule.setNbPts(rule.getNbPts());
+                 modelApplication.addRule(modelRule);
+            }
+            for(Event event : events){
+                EventDTO modelEvent = new EventDTO();
+                modelEvent.setId(event.getId());
+                modelEvent.setType(event.getType());
+                modelApplication.addEvent(modelEvent);
+            }
+       }       
+       return modelApplication;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Application> findAll() {
+    public List<ApplicationDTO> findAll() {
         //return super.findAll();
-        return applicationManager.findAllApplications();
+        List<ApplicationDTO> listApplicationsDTO = new ArrayList();
+        List<Application> listApplications = applicationManager.findAllApplications();
+        for(Application application : listApplications){
+            ApplicationDTO modelApplication = new ApplicationDTO();
+            //List<Event> events = new ArrayList();
+            //List<Rule> rules = new ArrayList();
+            List<Event> events = application.getEvents();
+            List<Rule> rules = application.getRules();
+            modelApplication.setId(application.getId());
+            modelApplication.setName(application.getName());
+            modelApplication.setDescription(application.getDescription());
+            for(Event event : events){
+                EventDTO modelEvent = new EventDTO();
+                modelEvent.setId(event.getId());
+                modelEvent.setType(event.getType());
+                modelApplication.addEvent(modelEvent);
+            }
+            for(Rule rule : rules){
+                 RuleDTO modelRule = new RuleDTO();
+                 modelRule.setId(rule.getId());
+                 modelRule.setEventType(rule.getEventType());
+                 modelRule.setNbPts(rule.getNbPts());
+                 modelApplication.addRule(modelRule);
+            }
+            listApplicationsDTO.add(modelApplication);
+        }
+        return listApplicationsDTO;
     }
 
-    @GET
+    /*@GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
     public List<Application> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
@@ -86,7 +141,7 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
     public String countREST() {
         //return String.valueOf(super.count());
         return null;
-    }
+    }*/
 
 
     protected EntityManager getEntityManager() {

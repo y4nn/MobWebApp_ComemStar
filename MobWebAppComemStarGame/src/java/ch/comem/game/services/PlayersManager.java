@@ -23,7 +23,7 @@ public class PlayersManager implements PlayersManagerLocal {
     private EntityManager em;
 
     @Override
-    public Player createPlayer(String firstName, String lastName, String email, List<Badge> listeBadges, List<Event> listeEvents) {
+    public Player createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents) {
         Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
@@ -89,6 +89,7 @@ public class PlayersManager implements PlayersManagerLocal {
         Badge badge = em.find(Badge.class, badgeAAssocie.getId());
         player.getListeBadges().add(badge);
         badge.getListePlayers().add(player);
+        em.flush();
     }
     
     @Override
