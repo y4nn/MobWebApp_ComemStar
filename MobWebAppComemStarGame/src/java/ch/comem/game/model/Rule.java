@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @NamedQuery(name = "findRule",
-        query = "SELECT r.id, r.eventType, r.nbPtsMin, r.nbPtsMax "
+        query = "SELECT r.id, r.eventType "
         + "FROM Rule r")
 public class Rule implements Serializable {
 
