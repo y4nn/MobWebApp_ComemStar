@@ -43,11 +43,12 @@ public class PlayerFacadeREST {
     @Produces({"application/json"})
     public void create(Player player) {
         if (player != null) {
-        this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
+            this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
             System.out.println("player != null");
+        } else {
+            this.manager.createPlayer();
+            System.out.println("player = null");
         }
-        this.manager.createPlayer();
-        System.out.println("player = null");
     }
 
     @PUT
