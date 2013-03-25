@@ -50,7 +50,7 @@ public class StudentFacadeREST {
             ClientConfig cc = new DefaultClientConfig();
             Client client = Client.create(cc);
             WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players");
-            String jsonObject = "{\"nbPoints\"0\"}";
+            String jsonObject = "{\"nbPoints\":\"0\"}";
             ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
 
             if (response.getStatus() != 200) {
@@ -68,7 +68,7 @@ public class StudentFacadeREST {
             e.printStackTrace();
 
         }
-        this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse());
+        this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse().getId());
     }
 
     @PUT
