@@ -9,6 +9,7 @@ import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import java.util.LinkedList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,19 +21,24 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class StudentsManager implements StudentsManagerLocal {
+    @EJB
+    private ClassesManagerLocal classesManager;
     @PersistenceContext
     private EntityManager em;
     
+    
+    
     @Override
-    public Student createStudent(String firstName, String lastName, String mail, String pass, Classe classe) {
+    public Student createStudent(String firstName, String lastName, String mail, String pass, Long classe_id) {
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
         student.setMail(mail);
         student.setPass(pass);
+        Classe classe = this.classesManager.findClasse(classe_id);
         
+        student.setClasse(classe);
         if(classe != null){
-            student.setClasse(classe);
             classe.addStudent(student);
         }
         
@@ -97,7 +103,6 @@ public class StudentsManager implements StudentsManagerLocal {
     @Override
     public Student loginStudent(String mail, String pass) {
         TypedQuery<Student> query = em.createNamedQuery("Student.findByMailAndPass", Student.class).setParameter("mail", mail).setParameter("pass", pass);
-        System.out.println("XXXXXXXXXXXX "+ query.getSingleResult().getFirstName());
         return query.getSingleResult();
     }
     
