@@ -46,28 +46,6 @@ public class StudentFacadeREST {
     @Consumes({"application/xml", "application/json"})
     public void create(Student entity) {
 
-        try {
-            ClientConfig cc = new DefaultClientConfig();
-            Client client = Client.create(cc);
-            WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players");
-            String jsonObject = "{\"nbPoints\":\"0\"}";
-            ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
-
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + response.getStatus());
-            }
-
-            String output = response.getEntity(String.class);
-
-            System.out.println("Output from Server .... \n");
-            System.out.println(output);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
         this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse().getId());
     }
 
@@ -96,8 +74,10 @@ public class StudentFacadeREST {
     public StudentDTO login(Student entity) {
         System.out.println("YYYYYYYYYYYYYY " + entity.getMail() + " -- " + entity.getPass());
         Student studentFound = this.studentsManager.loginStudent(entity.getMail(), entity.getPass());
-        StudentDTO sDTO = new StudentDTO();
+        
+        StudentDTO sDTO = null;
         if (studentFound != null) {
+            sDTO = new StudentDTO();
             sDTO.setId(studentFound.getId());
             sDTO.setFirstName(studentFound.getFirstName());
             sDTO.setLastName(studentFound.getLastName());
