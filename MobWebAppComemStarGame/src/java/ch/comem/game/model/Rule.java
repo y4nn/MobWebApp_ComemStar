@@ -34,28 +34,10 @@ public class Rule implements Serializable {
     protected Application application;
     @OneToOne(fetch = FetchType.LAZY)
     private Badge badge;
-    private int nbPtsMin;
-    private int nbPtsMax;
     private String eventType;
 
     public Rule() {
         this.badge = null;
-    }
-
-    public int getNbPtsMin() {
-        return nbPtsMin;
-    }
-
-    public void setNbPtsMin(int nbPtsMin) {
-        this.nbPtsMin = nbPtsMin;
-    }
-
-    public int getNbPtsMax() {
-        return nbPtsMax;
-    }
-
-    public void setNbPtsMax(int nbPtsMax) {
-        this.nbPtsMax = nbPtsMax;
     }
 
     public Badge getBadge() {

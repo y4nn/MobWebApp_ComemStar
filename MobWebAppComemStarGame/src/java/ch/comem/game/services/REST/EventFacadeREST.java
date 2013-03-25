@@ -47,8 +47,8 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
         Event event = eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
         List<Rule> rules = event.getApplication().getRules();
         for(Rule rule : rules){
-            if(event.getType() == rule.getEventType()){
-                //playersManager.associateBadge(event.getPlayer(), event.);
+            if(event.getType().equals(rule.getEventType())){
+                playersManager.associateBadge(event.getPlayer(), rule.getBadge());
                 break;
             }
         }

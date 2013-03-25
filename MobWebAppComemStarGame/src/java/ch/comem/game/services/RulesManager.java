@@ -23,11 +23,9 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Rule createRule(String eventType, int nbPtsMin, int nbPtsMax, Application application) {
+    public Rule createRule(String eventType, Application application) {
         Rule rule = new Rule();
         rule.setEventType(eventType);
-        rule.setNbPtsMax(nbPtsMax);
-        rule.setNbPtsMin(nbPtsMin);
         rule.setApplication(application);
         application.addRule(rule);
         em.persist(rule);
@@ -50,8 +48,6 @@ public class RulesManager implements RulesManagerLocal {
         if(ruleModel.getApplication()!= null){
             ruleToUpdate.setApplication(ruleModel.getApplication());
         }     
-        ruleToUpdate.setNbPtsMax(ruleModel.getNbPtsMax());
-        ruleToUpdate.setNbPtsMin(ruleModel.getNbPtsMin());
         return ruleToUpdate;
     }
 

@@ -6,18 +6,14 @@ package ch.comem.game.services.REST;
 
 import ch.comem.game.model.Rule;
 import ch.comem.game.services.RulesManagerLocal;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 
 /**
  *
@@ -37,7 +33,7 @@ public class RuleFacadeREST {
    
     @Consumes({"application/xml", "application/json"})
     public void create(Rule rule) {
-        this.manager.createRule(rule.getEventType(),rule.getNbPtsMin(),rule.getNbPtsMax(),rule.getApplication());
+        this.manager.createRule(rule.getEventType(),rule.getApplication());
     }
 
     @PUT

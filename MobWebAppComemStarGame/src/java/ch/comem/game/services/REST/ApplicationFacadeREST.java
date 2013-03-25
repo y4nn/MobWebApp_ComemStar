@@ -83,8 +83,6 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
                 RuleDTO modelRule = new RuleDTO();
                 modelRule.setId(rule.getId());
                 modelRule.setEventType(rule.getEventType());
-                modelRule.setNbPtsMax(rule.getNbPtsMax());
-                modelRule.setNbPtsMin(rule.getNbPtsMin());
                 modelApplication.addRule(modelRule);
             }
             for (Event event : events) {
@@ -122,8 +120,6 @@ public class ApplicationFacadeREST /*extends AbstractFacade<Application>*/ {
                 RuleDTO modelRule = new RuleDTO();
                 modelRule.setId(rule.getId());
                 modelRule.setEventType(rule.getEventType());
-                modelRule.setNbPtsMax(rule.getNbPtsMax());
-                modelRule.setNbPtsMin(rule.getNbPtsMin());
                 modelApplication.addRule(modelRule);
             }
             listApplicationsDTO.add(modelApplication);
