@@ -10,6 +10,9 @@ import ch.comem.appli.dto.StudentDTO;
 import ch.comem.appli.model.Cours;
 import ch.comem.appli.model.Student;
 import ch.comem.appli.services.StudentsManagerLocal;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -39,6 +42,30 @@ public class StudentFacadeREST{
     @POST
     @Consumes({"application/xml", "application/json"})
     public void create(Student entity) {
+        
+        try {
+ 
+		Client client = Client.create();
+ 
+		WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players");
+ 
+		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+ 
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : "
+			+ response.getStatus());
+		}
+ 
+		String output = response.getEntity(String.class);
+ 
+		System.out.println("Output from Server .... \n");
+		System.out.println(output);
+ 
+	  } catch (Exception e) {
+ 
+		e.printStackTrace();
+ 
+	  }
         this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse());
     }
 
