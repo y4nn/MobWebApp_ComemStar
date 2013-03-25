@@ -91,7 +91,7 @@ public class PlayersManager implements PlayersManagerLocal {
         badge.getListePlayers().add(player);
         em.flush();
     }
-    
+
     @Override
     public void associateEvent(Long id_player, Long id_event) {
         Player player = em.find(Player.class, id_player);
@@ -102,5 +102,13 @@ public class PlayersManager implements PlayersManagerLocal {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public Player createPlayer() {
+        Player player = new Player();
+        em.persist(player);
+        em.flush();
+        return player;
     }
 }

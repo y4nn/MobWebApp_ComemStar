@@ -18,6 +18,8 @@ import javax.ejb.Local;
 public interface PlayersManagerLocal {
 
     public Player createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents);
+    
+    public Player createPlayer();
 
     public Player readPlayer(Long id);
 
