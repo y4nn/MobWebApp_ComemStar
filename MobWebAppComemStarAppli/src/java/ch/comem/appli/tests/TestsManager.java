@@ -49,11 +49,11 @@ public class TestsManager implements TestsManagerLocal {
         Classe mit39 = this.classesManager.createClasse("MIT39");
         Classe mm39 = this.classesManager.createClasse("MM39");
 
-        Student zik = this.studentsManager.createStudent("zikrija", "saric", "zikrija.saric@heig-vd.ch", "pass", mit39);
-        Student yann = this.studentsManager.createStudent("yann", "maillard", "yann.maillard@heig-vd.ch", "pass", mit39);
-        Student fab = this.studentsManager.createStudent("fabien", "cornaz", "fabien.cornaz@heig-vd.ch", "pass", mit39);
-        Student chr = this.studentsManager.createStudent("christophe", "chuchaud", "christophe.curchaud@heig-vd.ch", "pass", mm39);
-        Student san = this.studentsManager.createStudent("sandra", "gindroz", "sandra.gindroz@heig-vd.ch", "pass", mm39);
+        Student zik = this.studentsManager.createStudent("zikrija", "saric", "zikrija.saric@heig-vd.ch", "pass", 1L);
+        Student yann = this.studentsManager.createStudent("yann", "maillard", "yann.maillard@heig-vd.ch", "pass", 1L);
+        Student fab = this.studentsManager.createStudent("fabien", "cornaz", "fabien.cornaz@heig-vd.ch", "pass", 1L);
+        Student chr = this.studentsManager.createStudent("christophe", "chuchaud", "christophe.curchaud@heig-vd.ch", "pass", 2L);
+        Student san = this.studentsManager.createStudent("sandra", "gindroz", "sandra.gindroz@heig-vd.ch", "pass", 2L);
         
         
 //        this.classesManager.addStudent(mit39, zik);

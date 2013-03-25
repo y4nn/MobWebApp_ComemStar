@@ -16,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface StudentsManagerLocal {
 
-    Student createStudent(String firstName, String lastName, String mail, String pass, Classe classe);
+    Student createStudent(String firstName, String lastName, String mail, String pass, Long classe_id);
 
     Student findStudent(Long id);
 
