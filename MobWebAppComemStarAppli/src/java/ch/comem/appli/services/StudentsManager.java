@@ -5,14 +5,12 @@
 package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
-import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
