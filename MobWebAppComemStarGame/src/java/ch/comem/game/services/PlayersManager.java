@@ -23,17 +23,17 @@ public class PlayersManager implements PlayersManagerLocal {
     private EntityManager em;
 
     @Override
-    public Long createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents) {
+    public Player createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents) {
         Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmail(email);
-        player.setNbPoints(0);
+        player.setNbPoints(nbPoints);
         player.setListeBadges(listeBadges);
         player.setListeEvents(listeEvents);
         em.persist(player);
         em.flush();
-        return player.getId();
+        return player;
     }
 
     @Override
