@@ -66,9 +66,7 @@ public class StudentsManager implements StudentsManagerLocal {
             student.setPlayerID(new Long(output));
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
 
         return student;
