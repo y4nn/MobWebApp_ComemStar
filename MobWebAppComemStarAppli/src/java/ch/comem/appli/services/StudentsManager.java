@@ -18,12 +18,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Ziki
  */
 @Stateless
+@XmlRootElement
 public class StudentsManager implements StudentsManagerLocal {
 
     @EJB
@@ -62,6 +64,8 @@ public class StudentsManager implements StudentsManagerLocal {
 
             String output = response.getEntity(String.class);
             student.setPlayerID(new Long(output));
+            System.out.println("OUUUUUUUUUT "+ output);
+            System.out.println("PPPPPPPPPPP "+ student.getPlayerID() );
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -41,12 +41,12 @@ public class PlayerFacadeREST {
     @POST
     @Consumes({"application/xml", "application/json"})
     @Produces({"application/json"})
-    public Long create(Player player) {
-        Long id_player = null;
+    public String create(Player player) {
+        Player id_player = null;
         if (player != null) {
             id_player = this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
         }
-        return id_player;
+        return id_player.getId()+"";
     }
 
     @PUT
