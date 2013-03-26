@@ -36,13 +36,13 @@ public class TestDataManager implements TestDataManagerLocal {
     private BadgesManagerLocal badgesManager;
 
     public void generateTestData() {
-        for (int i = 0; i < 100; i++) {
-            Application app = this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
-            /*Long id_player =*/ this.playersManager.createPlayer("prenom", "nom", "email",0, null, null);
+        for (int i = 1; i <= 5; i++) {
+//            Application app = this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
+//            Long id_player = this.playersManager.createPlayer("prenom", "nom", "email",0, null, null);
             Badge badge = this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
 //            this.eventsManager.createEvent("Type" + i, app, id_player);
-//            this.playersManager.associateBadge(id_player, badge);
-//            this.rulesManager.createRule("Type" + i, app);
+            this.playersManager.associateBadge(this.playersManager.readPlayer(new Long(i)), badge);
+//            this.rulesManager.createRule("Type" + i, app);       
         }
     }
 }

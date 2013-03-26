@@ -46,7 +46,7 @@ public class PlayerFacadeREST {
         if (player != null) {
             id_player = this.manager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNbPoints(), player.getListeBadges(), player.getListeEvents());
         }
-        return id_player.getId()+"";
+        return id_player.getId() + "";
     }
 
     @PUT
@@ -63,16 +63,16 @@ public class PlayerFacadeREST {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json", "application/xml"})
     public PlayerDTO find(@PathParam("id") Long id) {
         Player player = manager.readPlayer(id);
         PlayerDTO playerDTO = null;
         if (player != null) {
             playerDTO = new PlayerDTO();
             playerDTO.setId(id);
-            playerDTO.setFirstName(player.getFirstName());
-            playerDTO.setLastName(player.getLastName());
-            playerDTO.setEmail(player.getEmail());
+//            playerDTO.setFirstName(player.getFirstName());
+//            playerDTO.setLastName(player.getLastName());
+//            playerDTO.setEmail(player.getEmail());
             List<Badge> listeB = player.getListeBadges();
             List<BadgeDTO> listeBDTO = new LinkedList<BadgeDTO>();
             if (listeB != null) {
@@ -86,17 +86,17 @@ public class PlayerFacadeREST {
                 }
             }
             playerDTO.setListeBadges(listeBDTO);
-            List<Event> listeE = player.getListeEvents();
-            List<EventDTO> listeEDTO = new LinkedList<EventDTO>();
-            if (listeE != null) {
-                for (Event e : listeE) {
-                    EventDTO eventDTO = new EventDTO();
-                    eventDTO.setId(e.getId());
-                    eventDTO.setType(e.getType());
-                    listeEDTO.add(eventDTO);
-                }
-            }
-            playerDTO.setListeEvents(listeEDTO);
+//            List<Event> listeE = player.getListeEvents();
+//            List<EventDTO> listeEDTO = new LinkedList<EventDTO>();
+//            if (listeE != null) {
+//                for (Event e : listeE) {
+//                    EventDTO eventDTO = new EventDTO();
+//                    eventDTO.setId(e.getId());
+//                    eventDTO.setType(e.getType());
+//                    listeEDTO.add(eventDTO);
+//                }
+//            }
+//            playerDTO.setListeEvents(listeEDTO);
         }
         return playerDTO;
     }

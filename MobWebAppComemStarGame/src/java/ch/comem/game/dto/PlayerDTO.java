@@ -17,10 +17,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PlayerDTO implements Serializable {
 
     private Long id;
-    private String lastName, firstName, email;
+    //private String lastName, firstName, email;
     private int nbPoints;
     private List<BadgeDTO> listeBadges = new LinkedList<BadgeDTO>();
-    protected List<EventDTO> listeEvents = new LinkedList<EventDTO>();
+    //protected List<EventDTO> listeEvents = new LinkedList<EventDTO>();
+
+    public PlayerDTO() {
+    }
 
     public Long getId() {
         return id;
@@ -29,7 +32,7 @@ public class PlayerDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+/*
     public String getLastName() {
         return lastName;
     }
@@ -53,7 +56,7 @@ public class PlayerDTO implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
+*/
     public int getNbPoints() {
         return nbPoints;
     }
@@ -69,7 +72,7 @@ public class PlayerDTO implements Serializable {
     public void setListeBadges(List<BadgeDTO> listeBadges) {
         this.listeBadges = listeBadges;
     }
-
+/*
     public List<EventDTO> getListeEvents() {
         return listeEvents;
     }
@@ -77,7 +80,7 @@ public class PlayerDTO implements Serializable {
     public void setListeEvents(List<EventDTO> listeEvents) {
         this.listeEvents = listeEvents;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;
