@@ -23,7 +23,7 @@ public class PlayersManager implements PlayersManagerLocal {
     private EntityManager em;
 
     @Override
-    public Player createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents) {
+    public Long createPlayer(String firstName, String lastName, String email, int nbPoints, List<Badge> listeBadges, List<Event> listeEvents) {
         Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
@@ -33,13 +33,12 @@ public class PlayersManager implements PlayersManagerLocal {
         player.setListeEvents(listeEvents);
         em.persist(player);
         em.flush();
-        return player;
+        return player.getId();
     }
 
     @Override
     public Player readPlayer(Long id) {
         if (id == null) {
-            System.out.println("null");
         }
         return this.em.find(Player.class, id);
     }
@@ -102,13 +101,5 @@ public class PlayersManager implements PlayersManagerLocal {
 
     public void persist(Object object) {
         em.persist(object);
-    }
-
-    @Override
-    public Player createPlayer() {
-        Player player = new Player();
-        em.persist(player);
-        em.flush();
-        return player;
     }
 }
