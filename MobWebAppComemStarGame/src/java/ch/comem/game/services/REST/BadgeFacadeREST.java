@@ -55,7 +55,7 @@ public class BadgeFacadeREST {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json", "application/xml"})
     public BadgeDTO find(@PathParam("id") Long id) {
         Badge badge = this.manager.readBadge(id);
         BadgeDTO badgeDTO = null;
