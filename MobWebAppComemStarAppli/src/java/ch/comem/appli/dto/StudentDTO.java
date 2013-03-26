@@ -20,6 +20,7 @@ public class StudentDTO implements Serializable {
     private String firstName;
     private String mail;
     private String pass;
+    private String playerJSON;
     private Long playerID;
     private ClasseDTO classe;
 
@@ -29,6 +30,14 @@ public class StudentDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPlayerJSON() {
+        return playerJSON;
+    }
+
+    public void setPlayerJSON(String playerJSON) {
+        this.playerJSON = playerJSON;
     }
 
     public Long getPlayerID() {

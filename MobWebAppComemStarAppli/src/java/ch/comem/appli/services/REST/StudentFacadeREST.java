@@ -12,6 +12,11 @@ import ch.comem.appli.model.Cours;
 import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import ch.comem.appli.services.StudentsManagerLocal;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,45 +37,45 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("students")
 public class StudentFacadeREST {
-
+    
     @EJB
     private StudentsManagerLocal studentsManager;
-
+    
     public StudentFacadeREST() {
     }
-
+    
     @POST
     @Consumes({"application/xml", "application/json"})
     public void create(Student entity) {
         this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse().getId());
     }
-
+    
     @PUT
     @Consumes({"application/xml", "application/json"})
     public void edit(Student entity) {
         this.studentsManager.updateStudent(entity);
     }
-
+    
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Long id) {
         this.studentsManager.deleteStudent(id);
     }
-
+    
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
     public Student find(@PathParam("id") Long id) {
         return this.studentsManager.findStudent(id);
     }
-
+    
     @PUT
     @Path("login")
     @Produces({"application/xml", "application/json"})
     public StudentDTO login(Student entity) {
         System.out.println("YYYYYYYYYYYYYY " + entity.getMail() + " -- " + entity.getPass());
         Student studentFound = this.studentsManager.loginStudent(entity.getMail(), entity.getPass());
-
+        
         StudentDTO sDTO = null;
         if (studentFound != null) {
             sDTO = new StudentDTO();
@@ -100,10 +105,30 @@ public class StudentFacadeREST {
             }
             clDTO.setListeCours(listeCoursDTO);
             sDTO.setClasse(clDTO);
+            
+            try {
+                ClientConfig cc = new DefaultClientConfig();
+                Client client = Client.create(cc);
+                WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players/" + studentFound.getPlayerID());
+                ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(ClientResponse.class);
+                
+                if (response.getStatus() != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + response.getStatus());
+                }
+                
+                String output = response.getEntity(String.class);
+                System.out.println("PUTPUT "+ output);
+                sDTO.setPlayerJSON(output);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
         }
         return sDTO;
     }
-
+    
     @GET
     @Produces({"application/xml", "application/json"})
     public List<StudentDTO> findAll() {
@@ -121,7 +146,7 @@ public class StudentFacadeREST {
             clDTO.setName(student.getClasse().getName());
             List<CoursDTO> listeCoursDTO = new LinkedList<CoursDTO>();
             for (Cours cours : student.getClasse().getListeCours()) {
-
+                
                 CoursDTO coDTO = new CoursDTO();
                 coDTO.setId(cours.getId());
                 coDTO.setName(cours.getName());
@@ -129,13 +154,13 @@ public class StudentFacadeREST {
             }
             clDTO.setListeCours(listeCoursDTO);
             sDTO.setClasse(clDTO);
-
+            
             liste.add(sDTO);
-
+            
         }
         return liste;
     }
-
+    
     @GET
     @Path("count")
     @Produces("text/plain")
