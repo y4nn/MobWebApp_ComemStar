@@ -18,7 +18,7 @@ public class CoursDTO implements Serializable {
     private Long id;
     private String name;
     private List<ClasseDTO> listeClasses = new LinkedList<ClasseDTO>();
-    private List<Serie> serie = new LinkedList<Serie>();
+    private List<SerieDTO> serieDTO = new LinkedList<SerieDTO>();
 
     
     public CoursDTO(){
@@ -55,16 +55,16 @@ public class CoursDTO implements Serializable {
         
     }
     
-    public List<Serie> getSerie() {
-        return serie;
+    public List<SerieDTO> getSerieDTO() {
+        return serieDTO;
     }
 
-    public void setSerie(List<Serie> serie) {
-        this.serie = serie;
+    public void setSerieDTO(List<SerieDTO> serieDTO) {
+        this.serieDTO = serieDTO;
     }
     
-    public void addSerie(Serie serie) {
-        this.serie.add(serie);
+    public void addSerieDTO(SerieDTO serieDTO) {
+        this.serieDTO.add(serieDTO);
     }
     
 

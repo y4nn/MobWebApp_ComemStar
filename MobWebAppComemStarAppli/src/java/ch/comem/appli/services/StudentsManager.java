@@ -60,9 +60,11 @@ public class StudentsManager implements StudentsManagerLocal {
             if (response.getStatus() != 204) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
+            }else{
+                System.out.println(response.toString());
             }
 
-//            String output = response.getEntity(String.class);
+            //String output = response.getEntity(String.class);
 //
 //            System.out.println("Output from Server .... \n");
 //            System.out.println(output);

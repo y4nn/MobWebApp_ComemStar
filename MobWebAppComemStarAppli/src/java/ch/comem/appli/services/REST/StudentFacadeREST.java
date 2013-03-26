@@ -6,15 +6,12 @@ package ch.comem.appli.services.REST;
 
 import ch.comem.appli.dto.ClasseDTO;
 import ch.comem.appli.dto.CoursDTO;
+import ch.comem.appli.dto.SerieDTO;
 import ch.comem.appli.dto.StudentDTO;
 import ch.comem.appli.model.Cours;
+import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import ch.comem.appli.services.StudentsManagerLocal;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -93,6 +90,14 @@ public class StudentFacadeREST {
                 coDTO.setId(cours.getId());
                 coDTO.setName(cours.getName());
                 listeCoursDTO.add(coDTO);
+                List<SerieDTO> listeSerieDTO = new LinkedList<SerieDTO>();
+                for (Serie serie : cours.getSerie()) {
+                    SerieDTO serDTO = new SerieDTO();
+                    serDTO.setId(serie.getId());
+                    serDTO.setName(serie.getName());
+                    listeSerieDTO.add(serDTO);
+                }
+                coDTO.setSerieDTO(listeSerieDTO);
             }
             clDTO.setListeCours(listeCoursDTO);
             sDTO.setClasse(clDTO);
