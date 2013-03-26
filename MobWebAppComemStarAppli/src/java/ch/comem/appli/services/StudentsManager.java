@@ -5,14 +5,12 @@
 package ch.comem.appli.services;
 
 import ch.comem.appli.model.Classe;
-import ch.comem.appli.model.Serie;
 import ch.comem.appli.model.Student;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -20,12 +18,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Ziki
  */
 @Stateless
+@XmlRootElement
 public class StudentsManager implements StudentsManagerLocal {
 
     @EJB
@@ -64,6 +64,8 @@ public class StudentsManager implements StudentsManagerLocal {
 
             String output = response.getEntity(String.class);
             student.setPlayerID(new Long(output));
+            System.out.println("OUUUUUUUUUT "+ output);
+            System.out.println("PPPPPPPPPPP "+ student.getPlayerID() );
 
         } catch (Exception e) {
             e.printStackTrace();
