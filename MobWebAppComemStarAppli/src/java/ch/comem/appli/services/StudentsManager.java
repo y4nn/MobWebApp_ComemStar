@@ -57,17 +57,13 @@ public class StudentsManager implements StudentsManagerLocal {
             String jsonObject = "{\"nbPoints\":\"0\"}";
             ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
 
-            if (response.getStatus() != 204) {
+            if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
-            }else{
-                System.out.println(response.toString());
             }
 
-            //String output = response.getEntity(String.class);
-//
-//            System.out.println("Output from Server .... \n");
-//            System.out.println(output);
+            String output = response.getEntity(String.class);
+            student.setPlayerID(new Long(output));
 
         } catch (Exception e) {
 
@@ -132,11 +128,11 @@ public class StudentsManager implements StudentsManagerLocal {
     @Override
     public Student loginStudent(String mail, String pass) {
         TypedQuery<Student> query = em.createNamedQuery("Student.findByMailAndPass", Student.class).setParameter("mail", mail).setParameter("pass", pass);
-        try{
+        try {
             return query.getSingleResult();
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
-        
+
     }
 }

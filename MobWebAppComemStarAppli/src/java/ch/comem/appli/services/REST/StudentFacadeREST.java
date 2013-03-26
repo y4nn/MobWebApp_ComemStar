@@ -42,7 +42,6 @@ public class StudentFacadeREST {
     @POST
     @Consumes({"application/xml", "application/json"})
     public void create(Student entity) {
-
         this.studentsManager.createStudent(entity.getFirstName(), entity.getLastName(), entity.getMail(), entity.getPass(), entity.getClasse().getId());
     }
 
@@ -71,7 +70,7 @@ public class StudentFacadeREST {
     public StudentDTO login(Student entity) {
         System.out.println("YYYYYYYYYYYYYY " + entity.getMail() + " -- " + entity.getPass());
         Student studentFound = this.studentsManager.loginStudent(entity.getMail(), entity.getPass());
-        
+
         StudentDTO sDTO = null;
         if (studentFound != null) {
             sDTO = new StudentDTO();
