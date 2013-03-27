@@ -5,12 +5,12 @@
 package ch.comem.appli.services.REST;
 
 import ch.comem.appli.model.Question;
+import ch.comem.appli.model.Serie;
 import ch.comem.appli.services.QuestionsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -57,7 +57,7 @@ public class QuestionFacadeREST{
     public Question find(@PathParam("id") Long id) {
         return this.questionsManager.findQuestion(id);
     }
-
+    
     @GET
     @Produces({"application/xml", "application/json"})
     public List<Question> findAll() {

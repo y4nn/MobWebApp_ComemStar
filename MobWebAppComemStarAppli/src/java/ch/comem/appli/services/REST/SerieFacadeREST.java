@@ -11,8 +11,15 @@ import ch.comem.appli.model.Answer;
 import ch.comem.appli.model.Question;
 import ch.comem.appli.model.Serie;
 import ch.comem.appli.services.SeriesManagerLocal;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -23,6 +30,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 /**
  *
@@ -30,10 +39,11 @@ import javax.ws.rs.Produces;
  */
 @Stateless
 @Path("series")
-public class SerieFacadeREST  {
+public class SerieFacadeREST {
+
     @EJB
     private SeriesManagerLocal seriesManager;
-    
+
     public SerieFacadeREST() {
     }
 
@@ -77,7 +87,7 @@ public class SerieFacadeREST  {
         }
         return liste;
     }
-    
+
     @GET
     @Path("cours/{id}")
     @Produces({"application/xml", "application/json"})
@@ -102,7 +112,7 @@ public class SerieFacadeREST  {
             sDTO.setName(serie.getName());
             liste.add(sDTO);
         }
-        
+
         return liste;
     }
 
@@ -111,5 +121,58 @@ public class SerieFacadeREST  {
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(this.seriesManager.findAll().size());
+    }
+
+    @POST
+    @Path("end")
+    @Produces({"application/json", "application/xml"})
+    public void EndOfSerie(JSONObject jso) {
+        try {
+            String eventType = "";
+            int serieId = jso.getInt("serieId");
+            int score = jso.getInt("score");
+            int applicationId = jso.getInt("applicationId");
+            int playerId = jso.getInt("playerId");
+            if (score < 50) {
+                eventType = "Serie " + serieId + " terminee avec un score inférieur à 50%";
+            }
+            if ((score >= 50) && (score < 70)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 50% et 70%";
+            }
+            if ((score >= 70) && (score < 90)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 70% et 90%";
+            }
+            if ((score >= 90) && (score < 99)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 90% et 99%";
+            }
+            if ((score == 100)) {
+                eventType = "Serie " + serieId + " terminee avec un score parfait";
+            }
+            ClientConfig cc = new DefaultClientConfig();
+            Client client = Client.create(cc);
+            WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
+            String jsonObject = "{"
+                    + "\"type\": \""+eventType+"\","
+                    + "\"application\": {"
+                    + "\"id\": \""+applicationId+"\","
+                    + "\"name\": \"comemstar\","
+                    + "\"description\": \"application qui vous rend plus intelligent\""
+                    + "},"
+                    + "\"player\": {"
+                    + "\"id\": \""+playerId+"\""
+                    + "}"
+                    + "}";
+            ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
+            }
+
+            String output = response.getEntity(String.class);
+            System.out.println("OUUUUUUUUUT " + output);
+        } catch (JSONException ex) {
+            Logger.getLogger(SerieFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

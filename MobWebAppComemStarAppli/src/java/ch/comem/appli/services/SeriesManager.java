@@ -7,7 +7,7 @@ package ch.comem.appli.services;
 import ch.comem.appli.model.Cours;
 import ch.comem.appli.model.Question;
 import ch.comem.appli.model.Serie;
-import ch.comem.appli.model.Student;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -86,12 +86,4 @@ public class SeriesManager implements SeriesManagerLocal {
         return query.getResultList();
     }
     
-    
-    
-    
-    
-    
-
-    
-
 }
