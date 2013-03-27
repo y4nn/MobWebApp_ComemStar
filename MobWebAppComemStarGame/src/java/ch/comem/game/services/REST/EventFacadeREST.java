@@ -4,8 +4,10 @@
  */
 package ch.comem.game.services.REST;
 
+import ch.comem.game.model.Application;
 import ch.comem.game.model.Event;
 import ch.comem.game.model.Rule;
+import ch.comem.game.services.ApplicationsManagerLocal;
 import ch.comem.game.services.EventsManagerLocal;
 import ch.comem.game.services.PlayersManagerLocal;
 import java.util.List;
@@ -35,6 +37,8 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
     EventsManagerLocal eventsManager;
     @EJB
     PlayersManagerLocal playersManager;
+    @EJB
+    ApplicationsManagerLocal applicationsManager;
 
     public EventFacadeREST() {
         //super(Event.class);
@@ -48,11 +52,14 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
         System.out.println(entity.getType());
         System.out.println(entity.getApplication().getId());
         System.out.println(entity.getPlayer().getId());
+        Application application = applicationsManager.findApplication(entity.getApplication().getId());
+        Event event = eventsManager.createEvent(entity.getType(), application, entity.getPlayer());
+        List<Rule> rules = application.getRules();
         
-        Event event = eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
-        List<Rule> rules = event.getApplication().getRules();
         for(Rule rule : rules){
+            System.out.println(rule.getEventType());
             if(event.getType().equals(rule.getEventType())){
+                System.out.println("ca merche a fond!");
                 playersManager.associateBadge(event.getPlayer(), rule.getBadge());
                 break;
             }

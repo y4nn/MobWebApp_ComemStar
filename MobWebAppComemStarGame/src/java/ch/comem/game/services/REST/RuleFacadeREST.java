@@ -33,7 +33,7 @@ public class RuleFacadeREST {
    
     @Consumes({"application/xml", "application/json"})
     public void create(Rule rule) {
-        this.manager.createRule(rule.getEventType(),rule.getApplication());
+        this.manager.createRule(rule.getEventType(),rule.getApplication(), rule.getBadge());
     }
 
     @PUT

@@ -5,6 +5,7 @@
 package ch.comem.game.services;
 
 import ch.comem.game.model.Application;
+import ch.comem.game.model.Badge;
 import ch.comem.game.model.Rule;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -23,10 +24,11 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
 
     @Override
-    public Rule createRule(String eventType, Application application) {
+    public Rule createRule(String eventType, Application application, Badge badge) {
         Rule rule = new Rule();
         rule.setEventType(eventType);
         rule.setApplication(application);
+        rule.setBadge(badge);
         application.addRule(rule);
         em.persist(rule);
         em.flush();
