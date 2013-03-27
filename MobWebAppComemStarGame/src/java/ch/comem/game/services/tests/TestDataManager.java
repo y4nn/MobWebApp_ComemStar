@@ -36,8 +36,8 @@ public class TestDataManager implements TestDataManagerLocal {
     private BadgesManagerLocal badgesManager;
 
     public void generateTestData() {
+            Application app = this.applicationsManager.createApplication("comemstar", "application qui vous rend plus intelligent");
         for (int i = 1; i <= 5; i++) {
-//            Application app = this.applicationsManager.createApplication("Application " + i, "Ceci est une application de test no " + i);
 //            Long id_player = this.playersManager.createPlayer("prenom", "nom", "email",0, null, null);
             Badge badge = this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
 //            this.eventsManager.createEvent("Type" + i, app, id_player);

@@ -41,9 +41,14 @@ public class EventFacadeREST /*extends AbstractFacade<Event> */{
     }
 
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json", "application/xml" })
     public void create(Event entity) {
         //super.create(entity);
+        System.out.println("coucou");
+        System.out.println(entity.getType());
+        System.out.println(entity.getApplication().getId());
+        System.out.println(entity.getPlayer().getId());
+        
         Event event = eventsManager.createEvent(entity.getType(), entity.getApplication(), entity.getPlayer());
         List<Rule> rules = event.getApplication().getRules();
         for(Rule rule : rules){
