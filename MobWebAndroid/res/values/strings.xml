@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ComemStar</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="email">e-mail</string>
+    <string name="pass">password</string>
+    <string name="valider">Login</string>
+    <string name="btnQuestionValider">Valider</string>
+    <string name="btnRetour">Retour</string>
+
+</resources>
