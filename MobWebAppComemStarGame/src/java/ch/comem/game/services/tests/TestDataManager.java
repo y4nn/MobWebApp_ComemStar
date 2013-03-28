@@ -42,7 +42,7 @@ public class TestDataManager implements TestDataManagerLocal {
         Badge badge21 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 70% et 90%", "medal_silver");
         Badge badge31 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 90% et 99%", "medal_gold");
         Badge badge41 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score parfait", "diamond");
-        Badge badge51 = this.badgesManager.createBadge("Mobile WEB Service", "Cours 'Mobile WEB Service' terminé avec un score parfait", "diamond");
+        Badge badge51 = this.badgesManager.createBadge("Mobile WEB Service", "Cours 'Mobile WEB Service' terminé avec un score parfait", "cup");
         
         Badge badge12 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score compris entre 50% et 70%", "medal_bronze");
         Badge badge22 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score compris entre 70% et 90%", "medal_silver");
@@ -58,7 +58,7 @@ public class TestDataManager implements TestDataManagerLocal {
         Badge badge24 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 70% et 90%", "medal_silver");
         Badge badge34 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 90% et 99%", "medal_gold");
         Badge badge44 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score parfait", "diamond");
-        Badge badge54 = this.badgesManager.createBadge("IHM", "Cours 'IHM' terminé avec un score parfait", "diamond");
+        Badge badge54 = this.badgesManager.createBadge("IHM", "Cours 'IHM' terminé avec un score parfait", "cup");
 
 
 
