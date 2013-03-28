@@ -45,13 +45,24 @@ public class TestDataManager implements TestDataManagerLocal {
 //            this.playersManager.associateBadge(this.playersManager.readPlayer(new Long(i)), badge);
 //            this.rulesManager.createRule("Serie " + i + " terminee avec un score compris entre 90% et 99%", app2, badge);       
         }
+//        Badge badge1 = this.badgesManager.createBadge("Badge1", "Ceci est le badge no 1", "icone1");
+//        Badge badge2 = this.badgesManager.createBadge("Badge2", "Ceci est le badge no 2", "icone2");
+//        Badge badge3 = this.badgesManager.createBadge("Badge3", "Ceci est le badge no 3", "icone3");
+//        Badge badge4 = this.badgesManager.createBadge("Badge4", "Ceci est le badge no 4", "icone4");
+//        this.rulesManager.createRule("Serie 1 terminee avec un score inférieur à 50%", app2, badge1);
+//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 50% et 70%", app2, badge2);
+//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app2, badge3);
+//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app2, badge4);
+        
         Badge badge1 = this.badgesManager.createBadge("Badge1", "Ceci est le badge no 1", "icone1");
         Badge badge2 = this.badgesManager.createBadge("Badge2", "Ceci est le badge no 2", "icone2");
         Badge badge3 = this.badgesManager.createBadge("Badge3", "Ceci est le badge no 3", "icone3");
         Badge badge4 = this.badgesManager.createBadge("Badge4", "Ceci est le badge no 4", "icone4");
-        this.rulesManager.createRule("Serie 1 terminee avec un score inférieur à 50%", app2, badge1);
-        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 50% et 70%", app2, badge2);
-        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app2, badge3);
-        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app2, badge4);
+        Badge badge5 = this.badgesManager.createBadge("Badge5", "Ceci est le badge no 5", "icone5");
+        this.rulesManager.createRule("Serie 1 terminee avec un score inférieur à 50%", app, badge1);
+        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 50% et 70%", app, badge2);
+        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app, badge3);
+        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app, badge4);
+        this.rulesManager.createRule("Serie 1 terminee avec un score parfait", app, badge5);
     }
 }
