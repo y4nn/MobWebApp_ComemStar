@@ -198,7 +198,7 @@ public class SerieFacadeREST {
             for (int i = 0; i < listeSeriesRecherchee.size(); i++) {
                 for (int j = 0; j < listeBadges.length(); j++) {
 
-                    if (listeSeriesRecherchee.get(j).getName().equals(listeBadges.getJSONObject(i).getString("name")) && listeBadges.getJSONObject(i).getString("icone").equals("Diamond")) {
+                    if (listeSeriesRecherchee.get(j).getName().equals(listeBadges.getJSONObject(i).getString("name")) && listeBadges.getJSONObject(i).getString("icone").equals("diamond")) {
                         nombreBadgesSerie++;
                         System.out.println(nombreBadgesSerie);
                     }
