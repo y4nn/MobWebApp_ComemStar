@@ -187,7 +187,7 @@ public class TestsManager implements TestsManagerLocal {
         this.answersManager.createAnswer("Un serveur d'applications Open-source", Boolean.TRUE, q42);
         this.answersManager.createAnswer("Un Web Service pour les bases de données NOSQL", Boolean.FALSE, q42);
         
-        Question q52 = this.questionsManager.createQuestion("Pour ajouter un nouvel enregistrement à l'aide d'un service REST, il faut utiliser l'annotation:", serieREST);
+        /*Question q52 = this.questionsManager.createQuestion("Pour ajouter un nouvel enregistrement à l'aide d'un service REST, il faut utiliser l'annotation:", serieREST);
         this.answersManager.createAnswer("POST", Boolean.TRUE, q52);
         this.answersManager.createAnswer("GET", Boolean.FALSE, q52);
         this.answersManager.createAnswer("PUT", Boolean.FALSE, q52);
@@ -215,7 +215,7 @@ public class TestsManager implements TestsManagerLocal {
         Question q102 = this.questionsManager.createQuestion("JEE propose une approche:", serieREST);
         this.answersManager.createAnswer("multi threading", Boolean.FALSE, q102);
         this.answersManager.createAnswer("multi niveaux", Boolean.TRUE, q102);
-        this.answersManager.createAnswer("linéaire", Boolean.FALSE, q102);
+        this.answersManager.createAnswer("linéaire", Boolean.FALSE, q102);*/
         
         Question q13 = this.questionsManager.createQuestion("Qu'est ce que la 'Gamification'?", serieGamification);
         this.answersManager.createAnswer("Une religion orientée sur les jeux vidéo", Boolean.FALSE, q13);
@@ -232,7 +232,7 @@ public class TestsManager implements TestsManagerLocal {
         this.answersManager.createAnswer("Badge", Boolean.FALSE, q33);
         this.answersManager.createAnswer("Comment", Boolean.TRUE, q33);
         
-        Question q43 = this.questionsManager.createQuestion("Qu'est ce que Glassfish ?", serieGamification);
+        /*Question q43 = this.questionsManager.createQuestion("Qu'est ce que Glassfish ?", serieGamification);
         this.answersManager.createAnswer("Un poisson qui vit uniquement dans les vers de 3dl", Boolean.FALSE, q43);
         this.answersManager.createAnswer("Un serveur d'applications Open-source", Boolean.TRUE, q43);
         this.answersManager.createAnswer("Un Web Service pour les bases de données NOSQL", Boolean.FALSE, q43);
@@ -265,7 +265,7 @@ public class TestsManager implements TestsManagerLocal {
         Question q103 = this.questionsManager.createQuestion("JEE propose une approche:", serieGamification);
         this.answersManager.createAnswer("multi threading", Boolean.FALSE, q103);
         this.answersManager.createAnswer("multi niveaux", Boolean.TRUE, q103);
-        this.answersManager.createAnswer("linéaire", Boolean.FALSE, q103);
+        this.answersManager.createAnswer("linéaire", Boolean.FALSE, q103);*/
         
         Question q14 = this.questionsManager.createQuestion("Que signifie 'Layers'?", serieLayer);
         this.answersManager.createAnswer("Couches", Boolean.FALSE, q14);

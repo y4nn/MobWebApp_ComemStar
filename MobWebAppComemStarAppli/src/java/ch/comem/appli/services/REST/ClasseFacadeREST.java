@@ -4,13 +4,13 @@
  */
 package ch.comem.appli.services.REST;
 
+import ch.comem.appli.dto.ClasseDTO;
 import ch.comem.appli.model.Classe;
 import ch.comem.appli.services.ClassesManagerLocal;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +19,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+
+
 
 /**
  *
@@ -61,8 +63,16 @@ public class ClasseFacadeREST {
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Classe> findAll() {
-        return this.classesManager.findAll();
+    public List<ClasseDTO> findAll() {
+        List<ClasseDTO> liste = new LinkedList<ClasseDTO>();
+        for (Classe classe : this.classesManager.findAll()) {
+            ClasseDTO cDTO = new ClasseDTO();
+            cDTO.setId(classe.getId());
+            cDTO.setName(classe.getName());
+            liste.add(cDTO);
+        }
+
+        return liste;
     }
 
     @GET
