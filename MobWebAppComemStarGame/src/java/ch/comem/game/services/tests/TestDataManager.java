@@ -59,6 +59,11 @@ public class TestDataManager implements TestDataManagerLocal {
         Badge badge34 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 90% et 99%", "medal_gold");
         Badge badge44 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score parfait", "diamond");
         Badge badge54 = this.badgesManager.createBadge("IHM", "Cours 'IHM' terminé avec un score parfait", "cup");
+        
+        Badge badge15 = this.badgesManager.createBadge("Actions", "Serie 'Actions' terminée avec un score compris entre 50% et 70%", "medal_bronze");
+        Badge badge25 = this.badgesManager.createBadge("Actions", "Serie 'Actions' terminée avec un score compris entre 70% et 90%", "medal_silver");
+        Badge badge35 = this.badgesManager.createBadge("Actions", "Serie 'Actions' terminée avec un score compris entre 90% et 99%", "medal_gold");
+        Badge badge45 = this.badgesManager.createBadge("Actions", "Serie 'Actions' terminée avec un score parfait", "diamond");
 
 
 
@@ -84,6 +89,11 @@ public class TestDataManager implements TestDataManagerLocal {
         this.rulesManager.createRule("Serie 4 terminee avec un score parfait", app, badge44);
         this.rulesManager.createRule("a obtenu tous les badges en diamand du cours 1", app, badge54);
         
+        this.rulesManager.createRule("Serie 5 terminee avec un score compris entre 50% et 70%", app, badge15);
+        this.rulesManager.createRule("Serie 5 terminee avec un score compris entre 70% et 90%", app, badge25);
+        this.rulesManager.createRule("Serie 5 terminee avec un score compris entre 90% et 99%", app, badge35);
+        this.rulesManager.createRule("Serie 5 terminee avec un score parfait", app, badge45);
+       
         
         
 //        Badge badge5 = this.badgesManager.createBadge("Layers", "Ceci est le badge diamand de la serie Layers", "diamond");

@@ -268,8 +268,8 @@ public class TestsManager implements TestsManagerLocal {
         this.answersManager.createAnswer("linéaire", Boolean.FALSE, q103);
         
         Question q14 = this.questionsManager.createQuestion("Que signifie 'Layers'?", serieLayer);
-        this.answersManager.createAnswer("Couches", Boolean.FALSE, q14);
-        this.answersManager.createAnswer("Souches", Boolean.TRUE, q14);
+        this.answersManager.createAnswer("Couches", Boolean.TRUE, q14);
+        this.answersManager.createAnswer("Souches", Boolean.FALSE, q14);
         this.answersManager.createAnswer("Vues", Boolean.FALSE, q14);
         
         Question q24 = this.questionsManager.createQuestion("Que signifie IHM?", serieLayer);
@@ -281,6 +281,21 @@ public class TestsManager implements TestsManagerLocal {
         this.answersManager.createAnswer("Un type de dance", Boolean.FALSE, q34);
         this.answersManager.createAnswer("Un language de programmation", Boolean.TRUE, q34);
         this.answersManager.createAnswer("Une ile", Boolean.FALSE, q34);
+        
+        Question q15 = this.questionsManager.createQuestion("Parmis c'est propositions, laquelle ne fait pas parti de la liste des intefaces évenements de JDK 1.4.2?", serieActions);
+        this.answersManager.createAnswer("KeyListener", Boolean.FALSE, q14);
+        this.answersManager.createAnswer("CatListener", Boolean.TRUE, q14);
+        this.answersManager.createAnswer("WindowListener", Boolean.FALSE, q14);
+        
+        Question q25 = this.questionsManager.createQuestion("Quel package est inclu par défaut dans toutes les versions JAVA?", serieActions);
+        this.answersManager.createAnswer("R2D2", Boolean.FALSE, q24);
+        this.answersManager.createAnswer("AWT ", Boolean.TRUE, q24);
+        this.answersManager.createAnswer("K2000", Boolean.FALSE, q24);
+        
+        Question q35 = this.questionsManager.createQuestion("Quel film d'action à pour héro John McClane?", serieActions);
+        this.answersManager.createAnswer("Die Hard", Boolean.TRUE, q34);
+        this.answersManager.createAnswer("Mission Impossible", Boolean.FALSE, q34);
+        this.answersManager.createAnswer("Jurassic Park", Boolean.FALSE, q34);
         
         
     }
