@@ -36,34 +36,52 @@ public class TestDataManager implements TestDataManagerLocal {
     private BadgesManagerLocal badgesManager;
 
     public void generateTestData() {
-            Application app = this.applicationsManager.createApplication("comemstar", "application qui vous rend plus intelligent");
-            Application app2 = this.applicationsManager.createApplication("comemstar", "application qui vous rend plus intelligent");
-        for (int i = 1; i <= 5; i++) {
-//            Long id_player = this.playersManager.createPlayer("prenom", "nom", "email",0, null, null);
-//            Badge badge = this.badgesManager.createBadge("Badge" + i, "Ceci est le badge no " + i, "icone" + i);
-//            this.eventsManager.createEvent("Type" + i, app, id_player);
-//            this.playersManager.associateBadge(this.playersManager.readPlayer(new Long(i)), badge);
-//            this.rulesManager.createRule("Serie " + i + " terminee avec un score compris entre 90% et 99%", app2, badge);       
-        }
-//        Badge badge1 = this.badgesManager.createBadge("Badge1", "Ceci est le badge no 1", "icone1");
-//        Badge badge2 = this.badgesManager.createBadge("Badge2", "Ceci est le badge no 2", "icone2");
-//        Badge badge3 = this.badgesManager.createBadge("Badge3", "Ceci est le badge no 3", "icone3");
-//        Badge badge4 = this.badgesManager.createBadge("Badge4", "Ceci est le badge no 4", "icone4");
-//        this.rulesManager.createRule("Serie 1 terminee avec un score inférieur à 50%", app2, badge1);
-//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 50% et 70%", app2, badge2);
-//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app2, badge3);
-//        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app2, badge4);
-        
+        Application app = this.applicationsManager.createApplication("comemstar", "application qui vous rend plus intelligent");
+
         Badge badge11 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 50% et 70%", "medal_bronze");
-        Badge badge12 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 70% et 90%", "medal_silver");
-        Badge badge13 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 90% et 99%", "medal_gold");
-        Badge badge14 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score parfait", "diamond");
+        Badge badge21 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 70% et 90%", "medal_silver");
+        Badge badge31 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score compris entre 90% et 99%", "medal_gold");
+        Badge badge41 = this.badgesManager.createBadge("Connaissances Générales", "Serie 'Connaissances Générales' terminée avec un score parfait", "diamond");
+        Badge badge51 = this.badgesManager.createBadge("Mobile WEB Service", "Cours 'Mobile WEB Service' terminé avec un score parfait", "diamond");
+        
+        Badge badge12 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score compris entre 50% et 70%", "medal_bronze");
+        Badge badge22 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score compris entre 70% et 90%", "medal_silver");
+        Badge badge32 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score compris entre 90% et 99%", "medal_gold");
+        Badge badge42 = this.badgesManager.createBadge("REST", "Serie 'REST' terminée avec un score parfait", "diamond");
+
+        Badge badge13 = this.badgesManager.createBadge("Gamification", "Serie 'Gamification' terminée avec un score compris entre 50% et 70%", "medal_bronze");
+        Badge badge23 = this.badgesManager.createBadge("Gamification", "Serie 'Gamification' terminée avec un score compris entre 70% et 90%", "medal_silver");
+        Badge badge33 = this.badgesManager.createBadge("Gamification", "Serie 'Gamification' terminée avec un score compris entre 90% et 99%", "medal_gold");
+        Badge badge43 = this.badgesManager.createBadge("Gamification", "Serie 'Gamification' terminée avec un score parfait", "diamond");
+        
+        Badge badge14 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 50% et 70%", "medal_bronze");
+        Badge badge24 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 70% et 90%", "medal_silver");
+        Badge badge34 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score compris entre 90% et 99%", "medal_gold");
+        Badge badge44 = this.badgesManager.createBadge("Layers", "Serie 'Layers' terminée avec un score parfait", "diamond");
+
 
 
         this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 50% et 70%", app, badge11);
-        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app, badge12);
-        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app, badge13);
-        this.rulesManager.createRule("Serie 1 terminee avec un score parfait", app, badge14);
+        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 70% et 90%", app, badge21);
+        this.rulesManager.createRule("Serie 1 terminee avec un score compris entre 90% et 99%", app, badge31);
+        this.rulesManager.createRule("Serie 1 terminee avec un score parfait", app, badge41);
+        this.rulesManager.createRule("a obtenu tous les badges en diamand du cours 1", app, badge51);
+        
+        this.rulesManager.createRule("Serie 2 terminee avec un score compris entre 50% et 70%", app, badge12);
+        this.rulesManager.createRule("Serie 2 terminee avec un score compris entre 70% et 90%", app, badge22);
+        this.rulesManager.createRule("Serie 2 terminee avec un score compris entre 90% et 99%", app, badge32);
+        this.rulesManager.createRule("Serie 2 terminee avec un score parfait", app, badge42);
+        
+        this.rulesManager.createRule("Serie 3 terminee avec un score compris entre 50% et 70%", app, badge13);
+        this.rulesManager.createRule("Serie 3 terminee avec un score compris entre 70% et 90%", app, badge23);
+        this.rulesManager.createRule("Serie 3 terminee avec un score compris entre 90% et 99%", app, badge33);
+        this.rulesManager.createRule("Serie 3 terminee avec un score parfait", app, badge43);
+        
+        this.rulesManager.createRule("Serie 4 terminee avec un score compris entre 50% et 70%", app, badge14);
+        this.rulesManager.createRule("Serie 4 terminee avec un score compris entre 70% et 90%", app, badge24);
+        this.rulesManager.createRule("Serie 4 terminee avec un score compris entre 90% et 99%", app, badge34);
+        this.rulesManager.createRule("Serie 4 terminee avec un score parfait", app, badge44);
+        
         
         
 //        Badge badge5 = this.badgesManager.createBadge("Layers", "Ceci est le badge diamand de la serie Layers", "diamond");
