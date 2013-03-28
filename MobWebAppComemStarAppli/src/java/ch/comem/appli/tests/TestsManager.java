@@ -52,7 +52,7 @@ public class TestsManager implements TestsManagerLocal {
         Student zik = this.studentsManager.createStudent("zikrija", "saric", "zikrija.saric@heig-vd.ch", "pass", 1L);
         Student yann = this.studentsManager.createStudent("yann", "maillard", "yann.maillard@heig-vd.ch", "pass", 1L);
         Student fab = this.studentsManager.createStudent("fabien", "cornaz", "fabien.cornaz@heig-vd.ch", "pass", 1L);
-        Student chr = this.studentsManager.createStudent("christophe", "chuchaud", "christophe.curchaud@heig-vd.ch", "pass", 2L);
+        Student chr = this.studentsManager.createStudent("christian", "curchod", "christian.curchod@heig-vd.ch", "1234", 2L);
         Student san = this.studentsManager.createStudent("sandra", "gindroz", "sandra.gindroz@heig-vd.ch", "pass", 2L);
         
         
@@ -89,7 +89,7 @@ public class TestsManager implements TestsManagerLocal {
         this.coursesManager.addClasse(coursFI, ig38);
         
         
-        Serie serieIntroJEE     = this.seriesManager.createSerie("Intro JEE", coursMWS);
+        Serie serieGenerale     = this.seriesManager.createSerie("Connaissances Générales", coursMWS);
         Serie serieREST         = this.seriesManager.createSerie("REST", coursMWS);
         Serie serieLayer        = this.seriesManager.createSerie("Layers", coursIHM);
         Serie serieActions      = this.seriesManager.createSerie("Actions", coursIHM);
@@ -101,60 +101,70 @@ public class TestsManager implements TestsManagerLocal {
         Serie serieNewsPerti    = this.seriesManager.createSerie("Pertinance des articles", coursNEWS);
         
         
-        Question q1 = this.questionsManager.createQuestion("Combien font 2x2 ?", serieIntroJEE);
-        this.answersManager.createAnswer("42", Boolean.FALSE, q1);
-        this.answersManager.createAnswer("4", Boolean.TRUE, q1);
-        this.answersManager.createAnswer("21", Boolean.FALSE, q1);
+//        Question q1 = this.questionsManager.createQuestion("JEE: Combien font 2x2 ?", serieIntroJEE);
+//        this.answersManager.createAnswer("42", Boolean.FALSE, q1);
+//        this.answersManager.createAnswer("4", Boolean.TRUE, q1);
+//        this.answersManager.createAnswer("Demande à Chuck Norris", Boolean.FALSE, q1);
+//        
+//        Question q2 = this.questionsManager.createQuestion("JEE: Combien font 3+10 ?", serieIntroJEE);
+//        this.answersManager.createAnswer("13", Boolean.TRUE, q2);
+//        this.answersManager.createAnswer("4", Boolean.FALSE, q2);
+//        this.answersManager.createAnswer("Demande à Chuck Norris", Boolean.FALSE, q2);
+//        
+        Question q3 = this.questionsManager.createQuestion("REST: Combien font 6x7 ?", serieREST);
+        this.answersManager.createAnswer("42", Boolean.TRUE, q3);
+        this.answersManager.createAnswer("4", Boolean.FALSE, q3);
+        this.answersManager.createAnswer("Demande à Chuck Norris", Boolean.FALSE, q3);
         
-        Question q2 = this.questionsManager.createQuestion("Combien font 3+10 ?", serieIntroJEE);
-        this.answersManager.createAnswer("13", Boolean.TRUE, q2);
-        this.answersManager.createAnswer("4", Boolean.FALSE, q2);
-        this.answersManager.createAnswer("17", Boolean.FALSE, q2);
+        Question q11 = this.questionsManager.createQuestion("Qu'est ce que la 'Gamification'?", serieGenerale);
+        this.answersManager.createAnswer("Une religion orientée sur les jeux vidéo", Boolean.FALSE, q11);
+        this.answersManager.createAnswer("L'utilisation de mécanisme de jeu dans des applications diverses afin d'augmenter l'intéret, et l'engagement de l'utilisateur", Boolean.TRUE, q11);
+        this.answersManager.createAnswer("Une technique de programmation utilisée pour coder des systèmes holographiques", Boolean.FALSE, q11);
         
-        Question q3 = this.questionsManager.createQuestion("Combien font 3x3 ?", serieIntroJEE);
-        this.answersManager.createAnswer("27", Boolean.FALSE, q3);
-        this.answersManager.createAnswer("9", Boolean.TRUE, q3);
-        this.answersManager.createAnswer("6", Boolean.FALSE, q3);
+        Question q21 = this.questionsManager.createQuestion("Lequel de ces éléments n'est pas un composant d'une plateforme de 'Gamification'?", serieGenerale);
+        this.answersManager.createAnswer("REST API", Boolean.FALSE, q21);
+        this.answersManager.createAnswer("Game engine", Boolean.FALSE, q21);
+        this.answersManager.createAnswer("Havok engine", Boolean.TRUE, q21);
         
-        Question q4 = this.questionsManager.createQuestion("Combien font 3x0 ?", serieIntroJEE);
-        this.answersManager.createAnswer("0", Boolean.TRUE, q4);
-        this.answersManager.createAnswer("4", Boolean.FALSE, q4);
-        this.answersManager.createAnswer("3", Boolean.FALSE, q4);
+        Question q31 = this.questionsManager.createQuestion("Quelle entitée ne fait pas parti d'un Game engine?", serieGenerale);
+        this.answersManager.createAnswer("Event", Boolean.FALSE, q31);
+        this.answersManager.createAnswer("Badge", Boolean.FALSE, q31);
+        this.answersManager.createAnswer("Comment", Boolean.TRUE, q31);
         
-        Question q5 = this.questionsManager.createQuestion("Combien font 8/2 ?", serieIntroJEE);
-        this.answersManager.createAnswer("6", Boolean.FALSE, q5);
-        this.answersManager.createAnswer("2", Boolean.FALSE, q5);
-        this.answersManager.createAnswer("4", Boolean.TRUE, q5);
+        Question q41 = this.questionsManager.createQuestion("Qu'est ce que Glassfish ?", serieGenerale);
+        this.answersManager.createAnswer("Un poisson qui vit uniquement dans les vers de 3dl", Boolean.FALSE, q41);
+        this.answersManager.createAnswer("Un serveur d'applications Open-source", Boolean.TRUE, q41);
+        this.answersManager.createAnswer("Un Web Service pour les bases de données NOSQL", Boolean.FALSE, q41);
         
-        /*Question q6 = this.questionsManager.createQuestion("Combien font 13*2 ?", serieIntroJEE);
-        this.answersManager.createAnswer("13", Boolean.FALSE, q6);
-        this.answersManager.createAnswer("26", Boolean.TRUE, q6);
-        this.answersManager.createAnswer("27", Boolean.FALSE, q6);
+        Question q51 = this.questionsManager.createQuestion("Pour ajouter un nouvel enregistrement à l'aide d'un service REST, il faut utiliser l'annotation:", serieGenerale);
+        this.answersManager.createAnswer("POST", Boolean.TRUE, q51);
+        this.answersManager.createAnswer("GET", Boolean.FALSE, q51);
+        this.answersManager.createAnswer("PUT", Boolean.FALSE, q51);
         
-        Question q7 = this.questionsManager.createQuestion("Combien font 8x9 ?", serieIntroJEE);
-        this.answersManager.createAnswer("98", Boolean.FALSE, q7);
-        this.answersManager.createAnswer("17", Boolean.FALSE, q7);
-        this.answersManager.createAnswer("81", Boolean.TRUE, q7);
+        Question q61 = this.questionsManager.createQuestion("ORM signifie:", serieGenerale);
+        this.answersManager.createAnswer("Object Relational Mapping", Boolean.TRUE, q61);
+        this.answersManager.createAnswer("Open Rules Model", Boolean.FALSE, q61);
+        this.answersManager.createAnswer("Object Rules Mapping", Boolean.FALSE, q61);
         
-        Question q8 = this.questionsManager.createQuestion("Combien font 8x8 ?", serieIntroJEE);
-        this.answersManager.createAnswer("64", Boolean.TRUE, q8);
-        this.answersManager.createAnswer("16", Boolean.FALSE, q8);
-        this.answersManager.createAnswer("88", Boolean.FALSE, q8);
+        Question q71 = this.questionsManager.createQuestion("Que sont les 'servelet'?", serieGenerale);
+        this.answersManager.createAnswer("Une technologie JAVA utilisée pour effectuer des traitements coté serveur en réponse aux requêtes provenant en général de postes clients distants", Boolean.TRUE, q71);
+        this.answersManager.createAnswer("Des services Web permettant de simuler une intelligence artificielle", Boolean.FALSE, q71);
+        this.answersManager.createAnswer("Une Technologie IBM conçue pour remplacer le SQL en utilisant la RAM de l'ordinateur", Boolean.FALSE, q71);
         
-        Question q9 = this.questionsManager.createQuestion("Combien font 9+1 ?", serieIntroJEE);
-        this.answersManager.createAnswer("10", Boolean.TRUE, q9);
-        this.answersManager.createAnswer("4", Boolean.FALSE, q9);
-        this.answersManager.createAnswer("11", Boolean.FALSE, q9);
+        Question q81 = this.questionsManager.createQuestion("Laquelle de ces propositions n'est pas une qualité systemique?", serieGenerale);
+        this.answersManager.createAnswer("le temps de réponse", Boolean.FALSE, q81);
+        this.answersManager.createAnswer("la disponibilité", Boolean.FALSE, q81);
+        this.answersManager.createAnswer("la créativité", Boolean.TRUE, q81);
         
-        Question q10 = this.questionsManager.createQuestion("Combien font 7-4 ?", serieIntroJEE);
-        this.answersManager.createAnswer("10", Boolean.FALSE, q10);
-        this.answersManager.createAnswer("3", Boolean.TRUE, q10);
-        this.answersManager.createAnswer("14", Boolean.FALSE, q10);*/
+        Question q91 = this.questionsManager.createQuestion("Le logiciel qui implémente la spécification Java EE est appelé:", serieGenerale);
+        this.answersManager.createAnswer("application serveur", Boolean.TRUE, q91);
+        this.answersManager.createAnswer("application multiplateforme", Boolean.FALSE, q91);
+        this.answersManager.createAnswer("service entreprise", Boolean.FALSE, q91);
         
-        Question q0 = this.questionsManager.createQuestion("REST: Combien font 6x7 ?", serieREST);
-        this.answersManager.createAnswer("42", Boolean.TRUE, q0);
-        this.answersManager.createAnswer("4", Boolean.FALSE, q0);
-        this.answersManager.createAnswer("Demande à Chuck Norris", Boolean.FALSE, q0);
+        Question q101 = this.questionsManager.createQuestion("JEE propose une approche:", serieGenerale);
+        this.answersManager.createAnswer("multi threading", Boolean.FALSE, q101);
+        this.answersManager.createAnswer("multi niveaux", Boolean.TRUE, q101);
+        this.answersManager.createAnswer("linéaire", Boolean.FALSE, q101);
         
         
     }
