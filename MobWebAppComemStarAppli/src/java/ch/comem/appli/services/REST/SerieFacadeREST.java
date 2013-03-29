@@ -114,6 +114,7 @@ public class SerieFacadeREST {
             liste.add(sDTO);
         }
 
+
         return liste;
     }
 
@@ -130,57 +131,100 @@ public class SerieFacadeREST {
     @Produces({"application/json"})
     public void EndOfSerie(JSONObject jso) {
         try {
-
             String eventType = "";
             Long serieId = jso.getLong("serieId");
             int score = jso.getInt("score");
             int applicationId = jso.getInt("applicationId");
             int playerId = jso.getInt("playerId");
 
-            Serie serie = this.seriesManager.findSerie(serieId);
-            Long coursId = serie.getCours().getId();
 
-            List<Serie> listeSeriesRecherchee = new LinkedList<Serie>();
-            listeSeriesRecherchee = this.seriesManager.findByCours(coursId);
-
-
+            if (score < 50) {
+                eventType = "Serie " + serieId + " terminee avec un score inférieur à 50%";
+            }
+            if ((score >= 50) && (score < 70)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 50% et 70%";
+            }
+            if ((score >= 70) && (score < 90)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 70% et 90%";
+            }
+            if ((score >= 90) && (score <= 99)) {
+                eventType = "Serie " + serieId + " terminee avec un score compris entre 90% et 99%";
+            }
+            if ((score == 100)) {
+                eventType = "Serie " + serieId + " terminee avec un score parfait";
+            }
             ClientConfig cc = new DefaultClientConfig();
             Client client = Client.create(cc);
 
+
+            WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
+            String jsonObject = "{"
+                    + "\"type\": \"" + eventType + "\","
+                    + "\"application\": {"
+                    + "\"id\": \"" + applicationId + "\","
+                    + "\"name\": \"comemstar\","
+                    + "\"description\": \"application qui vous rend plus intelligent\""
+                    + "},"
+                    + "\"player\": {"
+                    + "\"id\": \"" + playerId + "\""
+                    + "}"
+                    + "}";
+
+
+            ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
+
+
+            if (response.getStatus() != 204) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
+            }
+
+
+
             WebResource webResource2 = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players/" + playerId);
             ClientResponse response2 = webResource2.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(ClientResponse.class);
+
 
             if (response2.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response2.getStatus());
             }
 
+
             JSONObject jsoPlayer = null;
             jsoPlayer = response2.getEntity(JSONObject.class);
+
+
+            Serie serie = this.seriesManager.findSerie(serieId);
+            Long coursId = serie.getCours().getId();
+
+
+            List<Serie> listeSeriesRecherchee = new LinkedList<Serie>();
+            listeSeriesRecherchee = this.seriesManager.findByCours(coursId);
+
+
             JSONArray listeBadges = jsoPlayer.getJSONArray("listeBadges");
+            System.out.println(listeBadges);
+            int nombreBadgesSerie = 0;
+            for (int i = 0; i < listeSeriesRecherchee.size(); i++) {
+                for (int j = 0; j < listeBadges.length(); j++) {
 
-            if (listeBadges.length() == 0) {
+
+                    if (listeSeriesRecherchee.get(j).getName().equals(listeBadges.getJSONObject(i).getString("name")) && listeBadges.getJSONObject(i).getString("icone").equals("diamond")) {
+                        nombreBadgesSerie++;
+                        System.out.println(nombreBadgesSerie);
+                    }
+                }
+            }
+            System.out.println(nombreBadgesSerie + "=" + listeBadges.length());
+            if (nombreBadgesSerie == listeBadges.length()) {
+                System.out.println("RENTRE DANS LE IF POUR CREER L'EVENT");
+                WebResource webResource3 = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
 
 
-                if (score < 50) {
-                    eventType = "Serie " + serieId + " terminee avec un score inférieur à 50%";
-                }
-                if ((score >= 50) && (score < 70)) {
-                    eventType = "Serie " + serieId + " terminee avec un score compris entre 50% et 70%";
-                }
-                if ((score >= 70) && (score < 90)) {
-                    eventType = "Serie " + serieId + " terminee avec un score compris entre 70% et 90%";
-                }
-                if ((score >= 90) && (score <= 99)) {
-                    eventType = "Serie " + serieId + " terminee avec un score compris entre 90% et 99%";
-                }
-                if ((score == 100)) {
-                    eventType = "Serie " + serieId + " terminee avec un score parfait";
-                }
-
-                WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
-                String jsonObject = "{"
-                        + "\"type\": \"" + eventType + "\","
+                String eventType3 = "a obtenu tous les badges en diamand du cours " + coursId;
+                String jsonObject3 = "{"
+                        + "\"type\": \"" + eventType3 + "\","
                         + "\"application\": {"
                         + "\"id\": \"" + applicationId + "\","
                         + "\"name\": \"comemstar\","
@@ -191,131 +235,17 @@ public class SerieFacadeREST {
                         + "}"
                         + "}";
 
-                ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
 
-                if (response.getStatus() != 204) {
+                ClientResponse response3 = webResource3.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject3);
+
+
+                if (response3.getStatus() != 204) {
                     throw new RuntimeException("Failed : HTTP error code : "
-                            + response.getStatus());
-                }
-
-                int nombreBadgesSerie = 0;
-                for (int k = 0; k < listeSeriesRecherchee.size(); k++) {
-                    for (int j = 0; j < listeBadges.length(); j++) {
-
-                        if (listeSeriesRecherchee.get(j).getName().equals(listeBadges.getJSONObject(k).getString("name")) && listeBadges.getJSONObject(k).getString("icone").equals("diamond")) {
-                            nombreBadgesSerie++;
-
-                        }
-                    }
-                }
-
-                if (nombreBadgesSerie == listeBadges.length()) {
-
-                    WebResource webResource3 = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
-
-                    String eventType3 = "a obtenu tous les badges en diamand du cours " + coursId;
-                    String jsonObject3 = "{"
-                            + "\"type\": \"" + eventType3 + "\","
-                            + "\"application\": {"
-                            + "\"id\": \"" + applicationId + "\","
-                            + "\"name\": \"comemstar\","
-                            + "\"description\": \"application qui vous rend plus intelligent\""
-                            + "},"
-                            + "\"player\": {"
-                            + "\"id\": \"" + playerId + "\""
-                            + "}"
-                            + "}";
-
-                    ClientResponse response3 = webResource3.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject3);
-
-                    if (response3.getStatus() != 204) {
-                        throw new RuntimeException("Failed : HTTP error code : "
-                                + response3.getStatus());
-                    }
-                }
-
-
-            } else {
-
-                for (int i = 0; i < listeBadges.length(); i++) {
-
-                    if (!listeBadges.getJSONObject(i).getString("name").equals(serie.getName())) {
-                        if (score < 50) {
-                            eventType = "Serie " + serieId + " terminee avec un score inférieur à 50%";
-                        }
-                        if ((score >= 50) && (score < 70)) {
-                            eventType = "Serie " + serieId + " terminee avec un score compris entre 50% et 70%";
-                        }
-                        if ((score >= 70) && (score < 90)) {
-                            eventType = "Serie " + serieId + " terminee avec un score compris entre 70% et 90%";
-                        }
-                        if ((score >= 90) && (score <= 99)) {
-                            eventType = "Serie " + serieId + " terminee avec un score compris entre 90% et 99%";
-                        }
-                        if ((score == 100)) {
-                            eventType = "Serie " + serieId + " terminee avec un score parfait";
-                        }
-
-
-                        WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
-                        String jsonObject = "{"
-                                + "\"type\": \"" + eventType + "\","
-                                + "\"application\": {"
-                                + "\"id\": \"" + applicationId + "\","
-                                + "\"name\": \"comemstar\","
-                                + "\"description\": \"application qui vous rend plus intelligent\""
-                                + "},"
-                                + "\"player\": {"
-                                + "\"id\": \"" + playerId + "\""
-                                + "}"
-                                + "}";
-
-                        ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject);
-
-                        if (response.getStatus() != 204) {
-                            throw new RuntimeException("Failed : HTTP error code : "
-                                    + response.getStatus());
-                        }
-
-                        int nombreBadgesSerie = 0;
-                        for (int k = 0; k < listeSeriesRecherchee.size(); i++) {
-                            for (int j = 0; j < listeBadges.length(); j++) {
-
-                                if (listeSeriesRecherchee.get(j).getName().equals(listeBadges.getJSONObject(k).getString("name")) && listeBadges.getJSONObject(k).getString("icone").equals("diamond")) {
-                                    nombreBadgesSerie++;
-
-                                }
-                            }
-                        }
-
-                        if (nombreBadgesSerie == listeBadges.length()) {
-
-                            WebResource webResource3 = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/events");
-
-                            String eventType3 = "a obtenu tous les badges en diamand du cours " + coursId;
-                            String jsonObject3 = "{"
-                                    + "\"type\": \"" + eventType3 + "\","
-                                    + "\"application\": {"
-                                    + "\"id\": \"" + applicationId + "\","
-                                    + "\"name\": \"comemstar\","
-                                    + "\"description\": \"application qui vous rend plus intelligent\""
-                                    + "},"
-                                    + "\"player\": {"
-                                    + "\"id\": \"" + playerId + "\""
-                                    + "}"
-                                    + "}";
-
-                            ClientResponse response3 = webResource3.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(ClientResponse.class, jsonObject3);
-
-                            if (response3.getStatus() != 204) {
-                                throw new RuntimeException("Failed : HTTP error code : "
-                                        + response3.getStatus());
-                            }
-                        }
-
-                    }
+                            + response3.getStatus());
                 }
             }
+
+
 
         } catch (JSONException ex) {
             Logger.getLogger(SerieFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
