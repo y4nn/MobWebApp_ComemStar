@@ -29,6 +29,7 @@ public class BadgesManager implements BadgesManagerLocal {
         Badge badge = new Badge();
         badge.setName(name);
         badge.setDescription(description);
+        badge.setIcone(icone);
         em.persist(badge);
         em.flush();
         return badge;

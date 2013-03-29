@@ -59,7 +59,7 @@ public class CoursFacadeREST  {
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json", "application/xml"})
     public List<Cours> findAll() {
         return this.coursesManager.findAll();
     }
