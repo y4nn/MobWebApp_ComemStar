@@ -65,8 +65,60 @@ public class StudentFacadeREST {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Student find(@PathParam("id") Long id) {
-        return this.studentsManager.findStudent(id);
+    public StudentDTO find(@PathParam("id") Long id) {
+        Student studentFound = this.studentsManager.findStudent(id);
+        
+        StudentDTO sDTO = null;
+        if (studentFound != null) {
+            sDTO = new StudentDTO();
+            sDTO.setId(studentFound.getId());
+            sDTO.setFirstName(studentFound.getFirstName());
+            sDTO.setLastName(studentFound.getLastName());
+            sDTO.setMail(studentFound.getMail());
+            //sDTO.setPass(studentFound.getPass());
+
+            ClasseDTO clDTO = new ClasseDTO();
+            clDTO.setId(studentFound.getClasse().getId());
+            clDTO.setName(studentFound.getClasse().getName());
+            List<CoursDTO> listeCoursDTO = new LinkedList<CoursDTO>();
+            for (Cours cours : studentFound.getClasse().getListeCours()) {
+                CoursDTO coDTO = new CoursDTO();
+                coDTO.setId(cours.getId());
+                coDTO.setName(cours.getName());
+                listeCoursDTO.add(coDTO);
+                List<SerieDTO> listeSerieDTO = new LinkedList<SerieDTO>();
+                for (Serie serie : cours.getSerie()) {
+                    SerieDTO serDTO = new SerieDTO();
+                    serDTO.setId(serie.getId());
+                    serDTO.setName(serie.getName());
+                    listeSerieDTO.add(serDTO);
+                }
+                coDTO.setSerieDTO(listeSerieDTO);
+            }
+            clDTO.setListeCours(listeCoursDTO);
+            sDTO.setClasse(clDTO);
+            
+            try {
+                ClientConfig cc = new DefaultClientConfig();
+                Client client = Client.create(cc);
+                WebResource webResource = client.resource("http://localhost:8080/MobWebAppComemStarGame/webresources/players/" + studentFound.getPlayerID());
+                ClientResponse response = webResource.type(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(ClientResponse.class);
+                
+                if (response.getStatus() != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + response.getStatus());
+                }
+                
+                String output = response.getEntity(String.class);
+                System.out.println("PUTPUT "+ output);
+                sDTO.setPlayerJSON(output);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        }
+        return sDTO;
     }
     
     @PUT
